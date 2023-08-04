@@ -7,14 +7,33 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
+
+//    long now = System.currentTimeMillis(); //현재시간 가져오기
+//    Date date = new Date(now); //Date 형식으로 Convert
+//
+//    Calendar cal = Calendar.getInstance();
+//    cal.setTime(date);
+//
+//    int dayWeek = cal.get(Calendar.DAY_OF_WEEK);
+//    String str_week = "";
+//    SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd ()");
+//    String formatDate = format.format(date);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +48,18 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         navigationView = (NavigationView)findViewById(R.id.navigation_view);
+
+        TextView dateTextView = findViewById(R.id.dateTextView);
+
+        // 현재 날짜를 가져옴
+        Calendar calendar = Calendar.getInstance();
+
+        // 날짜를 원하는 형식으로 포맷팅
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd (E)", Locale.getDefault());
+        String formattedDate = formatter.format(calendar.getTime());
+
+        // TextView에 날짜 표시
+        dateTextView.setText(formattedDate);
     }
 
     @Override
