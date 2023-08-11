@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         navigationView = (NavigationView)findViewById(R.id.navigation_view);
 
         TextView dateTextView = findViewById(R.id.dateTextView);
+        TextView plannedTasksTextView = findViewById(R.id.plannedTasksTextView);
+        TextView completedTasksTextView = findViewById(R.id.completedTasksTextView);
 
         // 현재 날짜를 가져옴
         Calendar calendar = Calendar.getInstance();
@@ -60,6 +62,20 @@ public class MainActivity extends AppCompatActivity {
 
         // TextView에 날짜 표시
         dateTextView.setText(formattedDate);
+
+        // 계획한 일 개수 출력
+        int numberOfPlannedTasks = 5; // 계획한 할 일 개수
+        String newText1 = "♥ 오늘 계획한 할 일: " + numberOfPlannedTasks + " 개";
+        plannedTasksTextView.setText(newText1);
+
+        // 완료한 일 개수 출력
+        int numberOfCompletedTasks = 5; // 완료한 할 일 개수
+        String newText2 = "♥ 오늘 완료한 할 일: " + numberOfCompletedTasks + " 개";
+        completedTasksTextView.setText(newText2);
+
+
+
+
     }
 
     @Override
