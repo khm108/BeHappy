@@ -232,7 +232,7 @@
             android:layout_height="150dp"
             android:layout_gravity="bottom|end"
             android:layout_marginTop="10dp"
-            android:background="@drawable/menu_bar1"
+            android:background="@drawable/menu_bar"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/menu_bar" />
 
@@ -244,6 +244,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        android:background="#93AA64"
         app:headerLayout="@layout/navi_header"
         app:menu="@menu/navi_menu" />
 

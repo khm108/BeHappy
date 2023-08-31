@@ -18,7 +18,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, com.hello.ourApplication.MainActivity.class); // 스플래시 화면이 끝나면 이동할 Activity
+                Intent intent = new Intent(SplashActivity.this, com.hello.ourApplication.TutorialActivity.class); // 스플래시 화면이 끝나면 이동할 Activity
                 startActivity(intent);
                 finish(); // 현재 Activity 종료
             }
