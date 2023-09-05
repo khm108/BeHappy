@@ -17,15 +17,19 @@
         android:id="@+id/viewpager" />
 
     <ImageButton
+        android:id="@+id/tut_button_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/tut_button_login" />
+        android:layout_marginTop="30dp"
+        android:src="@drawable/tut_button_login"
+        android:background="#00FFFFFF"/>
 
     <ImageButton
+        android:id="@+id/tut_button_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/tut_button_next" />
+        android:src="@drawable/tut_button_next"
+        android:background="#00FFFFFF"/>
 
 </LinearLayout>

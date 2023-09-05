@@ -8,12 +8,13 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/tut_progress_3" />
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:src="@drawable/tutorial_3" />
 

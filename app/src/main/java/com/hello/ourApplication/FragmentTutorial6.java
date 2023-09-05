@@ -17,6 +17,10 @@ public class FragmentTutorial6 extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_tutorial_6, container, false);
 
         ImageButton goToMain = rootView.findViewById(R.id.tutorial_to_main);
+
+        ImageButton buttonLogin = getActivity().findViewById(R.id.tut_button_login);
+        ImageButton buttonNext = getActivity().findViewById(R.id.tut_button_next);
+
         goToMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
