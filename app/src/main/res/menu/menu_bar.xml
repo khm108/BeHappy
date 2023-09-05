@@ -4,21 +4,21 @@
     <item
         android:id="@+id/menu_bar_home"
         android:enabled="true"
-        android:title="홈 화면"
+        android:title=""
         android:titleTextAppearance="@style/MenuTitle"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/menu_bar_chat"
         android:enabled="true"
-        android:title="채팅하기"
+        android:title=""
         android:titleTextAppearance="@style/MenuTitle"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/menu_bar_calendar"
         android:enabled="true"
-        android:title="달력"
+        android:title=""
         android:titleTextAppearance="@style/MenuTitle"
         app:showAsAction="always" />
 </menu>
