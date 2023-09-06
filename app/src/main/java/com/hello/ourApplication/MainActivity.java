@@ -5,17 +5,19 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -73,8 +75,15 @@ public class MainActivity extends AppCompatActivity {
         String newText2 = "♥ 오늘 완료한 할 일: " + numberOfCompletedTasks + " 개";
         completedTasksTextView.setText(newText2);
 
+        ImageButton buttonDiary = findViewById(R.id.diary);
 
-
+        buttonDiary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, com.hello.ourApplication.DiarySelectKeyword.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

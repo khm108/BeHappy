@@ -25,7 +25,7 @@
             android:id="@+id/dateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:text="날짜"
@@ -72,12 +72,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/leaf1"
+                <ImageButton
+                    android:id="@+id/diary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/leaf" />
+                    android:background="#00FFFFFF"
+                    android:src="@drawable/leaf" />
 
                 <TextView
                     android:id="@+id/leaf1"
@@ -107,12 +108,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp">
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/leaf2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/leaf" />
+                    android:background="#00FFFFFF"
+                    android:src="@drawable/leaf" />
 
                 <TextView
                     android:id="@+id/leaf2"
@@ -150,12 +152,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/leaf3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/leaf" />
+                    android:background="#00FFFFFF"
+                    android:src="@drawable/leaf" />
 
                 <TextView
                     android:id="@+id/leaf3"
@@ -185,12 +188,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp">
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/leaf4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/leaf" />
+                    android:background="#00FFFFFF"
+                    android:src="@drawable/leaf" />
 
                 <TextView
                     android:id="@+id/leaf4"
