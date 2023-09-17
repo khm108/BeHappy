@@ -26,17 +26,6 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
 
-//    long now = System.currentTimeMillis(); //현재시간 가져오기
-//    Date date = new Date(now); //Date 형식으로 Convert
-//
-//    Calendar cal = Calendar.getInstance();
-//    cal.setTime(date);
-//
-//    int dayWeek = cal.get(Calendar.DAY_OF_WEEK);
-//    String str_week = "";
-//    SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd ()");
-//    String formatDate = format.format(date);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() { //뒤로가기 했을 때
+    public void onBackPressed() { // 뒤로 가기 했을 때
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {

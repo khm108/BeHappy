@@ -60,7 +60,7 @@ public class DiarySelectKeyword extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() { //뒤로가기 했을 때
+    public void onBackPressed() { // 뒤로 가기 했을 때
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
