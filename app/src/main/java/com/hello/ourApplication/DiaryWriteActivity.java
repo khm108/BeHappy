@@ -1,9 +1,13 @@
 package com.hello.ourApplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -15,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class DiarySelectKeyword extends AppCompatActivity {
+public class DiaryWriteActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     DrawerLayout drawerLayout;
@@ -24,7 +28,7 @@ public class DiarySelectKeyword extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.diary_select_keyword);
+        setContentView(R.layout.diary_write);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -46,6 +50,44 @@ public class DiarySelectKeyword extends AppCompatActivity {
 
         // TextView에 날짜 표시
         dateTextView.setText(formattedDate);
+
+        ImageButton goToPhotoButton = findViewById(R.id.diary_content_complete);
+
+        goToPhotoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DiaryWriteActivity.this, DiaryPhotoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.item_recommend: // "추천받기" 메뉴 클릭 시
+                        Intent intent = new Intent(DiaryWriteActivity.this, RecommendActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.item_diary: // "일기 모아보기" 메뉴 클릭 시
+                        intent = new Intent(DiaryWriteActivity.this, DiaryMainActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.item_test: // "우울증 자가 진단" 메뉴 클릭 시
+                        intent = new Intent(DiaryWriteActivity.this, TestActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.item_diary_new: // "일기 작성하기" 메뉴 클릭 시
+                        intent = new Intent(DiaryWriteActivity.this, DiaryWriteActivity.class);
+                        startActivity(intent);
+                        break;
+                }
+
+                // 네비게이션 드로어 닫기
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
     }
 
     @Override

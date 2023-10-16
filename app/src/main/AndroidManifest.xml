@@ -34,7 +34,25 @@
             android:name=".SignInActivity">
         </activity>
         <activity
-            android:name=".DiarySelectKeyword">
+            android:name=".RecommendActivity">
+        </activity>
+        <activity
+            android:name=".TestActivity">
+        </activity>
+        <activity
+            android:name=".DiaryMainActivity">
+        </activity>
+        <activity
+            android:name=".DiaryWriteActivity">
+        </activity>
+        <activity
+            android:name=".DiaryPhotoActivity">
+        </activity>
+        <activity
+            android:name=".DiarySelectKeywordActivity">
+        </activity>
+        <activity
+            android:name=".DiaryProcessActivity">
         </activity>
     </application>
 
