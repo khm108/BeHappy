@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageButton
-                    android:id="@+id/diary"
+                    android:id="@+id/mainButton_diary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -85,10 +85,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:layout_alignLeft="@+id/leaf1"
-                    android:layout_alignTop="@+id/leaf1"
-                    android:layout_alignRight="@+id/leaf1"
-                    android:layout_alignBottom="@+id/leaf1"
+                    android:layout_alignLeft="@+id/mainButton_diary"
+                    android:layout_alignTop="@+id/mainButton_diary"
+                    android:layout_alignRight="@+id/mainButton_diary"
+                    android:layout_alignBottom="@+id/mainButton_diary"
 
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/himelody"
@@ -109,7 +109,7 @@
                 android:layout_marginLeft="20dp">
 
                 <ImageButton
-                    android:id="@+id/leaf2"
+                    android:id="@+id/mainButton_calendar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -121,10 +121,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:layout_alignLeft="@+id/leaf2"
-                    android:layout_alignTop="@+id/leaf2"
-                    android:layout_alignRight="@+id/leaf2"
-                    android:layout_alignBottom="@+id/leaf2"
+                    android:layout_alignLeft="@+id/mainButton_calendar"
+                    android:layout_alignTop="@+id/mainButton_calendar"
+                    android:layout_alignRight="@+id/mainButton_calendar"
+                    android:layout_alignBottom="@+id/mainButton_calendar"
 
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/himelody"
@@ -153,7 +153,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageButton
-                    android:id="@+id/leaf3"
+                    android:id="@+id/mainButton_recommend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -165,10 +165,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:layout_alignLeft="@+id/leaf3"
-                    android:layout_alignTop="@+id/leaf3"
-                    android:layout_alignRight="@+id/leaf3"
-                    android:layout_alignBottom="@+id/leaf3"
+                    android:layout_alignLeft="@+id/mainButton_recommend"
+                    android:layout_alignTop="@+id/mainButton_recommend"
+                    android:layout_alignRight="@+id/mainButton_recommend"
+                    android:layout_alignBottom="@+id/mainButton_recommend"
 
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/himelody"
@@ -176,7 +176,7 @@
                     android:letterSpacing="0.04"
                     android:paddingLeft="15dp"
                     android:paddingTop="5dp"
-                    android:text="포켓가든"
+                    android:text="추천"
                     android:textColor="#FFFFFF"
                     android:textSize="35sp"
                     android:textStyle="normal|bold"
@@ -189,7 +189,7 @@
                 android:layout_marginLeft="20dp">
 
                 <ImageButton
-                    android:id="@+id/leaf4"
+                    android:id="@+id/mainButton_chat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
@@ -201,10 +201,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:layout_alignLeft="@+id/leaf4"
-                    android:layout_alignTop="@+id/leaf4"
-                    android:layout_alignRight="@+id/leaf4"
-                    android:layout_alignBottom="@+id/leaf4"
+                    android:layout_alignLeft="@+id/mainButton_chat"
+                    android:layout_alignTop="@+id/mainButton_chat"
+                    android:layout_alignRight="@+id/mainButton_chat"
+                    android:layout_alignBottom="@+id/mainButton_chat"
 
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/himelody"

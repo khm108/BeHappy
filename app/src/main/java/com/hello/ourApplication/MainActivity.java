@@ -65,12 +65,44 @@ public class MainActivity extends AppCompatActivity {
         String newText2 = "♥ 오늘 완료한 할 일: " + numberOfCompletedTasks + " 개";
         completedTasksTextView.setText(newText2);
 
-        ImageButton buttonDiary = findViewById(R.id.diary);
+        ImageButton buttonDiary = findViewById(R.id.mainButton_diary); // 메인화면 버튼: 다이어리
+        ImageButton buttoncalendar = findViewById(R.id.mainButton_calendar); // 메인화면 버튼: 달력
+        ImageButton buttonRecommend = findViewById(R.id.mainButton_recommend); // 메인화면 버튼: 포켓가든
+        ImageButton buttonChat = findViewById(R.id.mainButton_chat); // 메인화면 버튼: 채팅
 
+        // 다이어리 버튼 클릭시
         buttonDiary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, DiarySelectKeywordActivity.class);
+                Intent intent = new Intent(MainActivity.this, DiaryMainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // 달력 버튼 클릭시
+        buttoncalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 달력 아직 미완이라 일기로 연결
+                Intent intent = new Intent(MainActivity.this, DiaryMainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // 추천 버튼 클릭시
+        buttonRecommend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, RecommendActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //채팅 클릭시
+        buttonChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, DiaryMainActivity.class);
                 startActivity(intent);
             }
         });
