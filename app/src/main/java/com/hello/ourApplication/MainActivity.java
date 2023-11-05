@@ -127,6 +127,10 @@ public class MainActivity extends AppCompatActivity {
                         intent = new Intent(MainActivity.this, DiaryWriteActivity.class);
                         startActivity(intent);
                         break;
+                    case R.id.item_checklist:
+                        intent = new Intent(MainActivity.this, TodoMainActivity.class);
+                        startActivity(intent);
+                        break;
                 }
 
                 // 네비게이션 드로어 닫기

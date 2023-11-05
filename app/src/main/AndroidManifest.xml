@@ -54,6 +54,17 @@
         <activity
             android:name=".DiaryProcessActivity">
         </activity>
+        <activity
+            android:name=".TodoMainActivity">
+        </activity>
+        <receiver
+            android:name="com.hello.ourApplication.TodoAlarmReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
