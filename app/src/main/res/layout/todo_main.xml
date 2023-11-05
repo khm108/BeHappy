@@ -18,8 +18,6 @@
             android:layout_height="wrap_content"
             android:theme="@style/Theme.NavigationDrawer">
 
-            <!-- 기존 코드 -->
-
         </com.google.android.material.appbar.AppBarLayout>
 
         <ScrollView
@@ -128,23 +126,24 @@
                     android:orientation="vertical"
                     android:visibility="gone">
 
-                    <!-- 이름 입력 -->
                     <EditText
                         android:id="@+id/nameEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
                         android:hint="Ex. Meeting with client"
                         android:singleLine="true" />
 
-                    <!-- 설명 입력 -->
                     <EditText
                         android:id="@+id/descriptionEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
                         android:hint="Description"
                         android:singleLine="true" />
 
-                    <!-- 시간 설정 -->
                     <TimePicker
                         android:id="@+id/timePicker"
                         style="@style/MyTimePickerStyle"
@@ -183,7 +182,7 @@
                 <ListView
                     android:id="@+id/alarmListView"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="1000dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="70dp"/>
 

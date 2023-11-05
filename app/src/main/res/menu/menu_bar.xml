@@ -6,7 +6,8 @@
         android:enabled="true"
         android:title=""
         android:titleTextAppearance="@style/MenuTitle"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        app:destination="@+id/activity_main" />
 
     <item
         android:id="@+id/menu_bar_chat"

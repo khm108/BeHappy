@@ -61,6 +61,10 @@ public class TestActivity extends AppCompatActivity {
                         intent = new Intent(TestActivity.this, DiaryWriteActivity.class);
                         startActivity(intent);
                         break;
+                    case R.id.item_checklist:
+                        intent = new Intent(TestActivity.this, TodoMainActivity.class);
+                        startActivity(intent);
+                        break;
                 }
 
                 // 네비게이션 드로어 닫기

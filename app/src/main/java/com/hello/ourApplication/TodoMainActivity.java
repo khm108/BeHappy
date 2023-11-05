@@ -25,6 +25,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.navigation.NavigationView;
 
 import android.app.AlarmManager;
@@ -87,6 +88,7 @@ public class TodoMainActivity extends AppCompatActivity {
         nameEditText = findViewById(R.id.nameEditText);
         descriptionEditText = findViewById(R.id.descriptionEditText);
 
+        /*
         // "알림 추가" 버튼 클릭 시 팝업 표시
         todoAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +120,8 @@ public class TodoMainActivity extends AppCompatActivity {
             }
         });
 
+         */
+
         timePicker = findViewById(R.id.timePicker);
         setAlarmButton = findViewById(R.id.confirmButton);
         alarmListView = findViewById(R.id.alarmListView);
@@ -137,6 +141,43 @@ public class TodoMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 setAlarm();
+            }
+        });
+
+        // bottom sheet 부분
+        BottomSheetDialog bottomSheetDialog;
+
+        View bottomSheetView = getLayoutInflater().inflate(R.layout.todo_bottom_sheet, null);
+        bottomSheetDialog = new BottomSheetDialog(this);
+        bottomSheetDialog.setContentView(bottomSheetView);
+
+        // "알림 추가" 버튼 클릭하면 아래에서 올라오도록
+        todoAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetDialog.show();
+            }
+        });
+
+        Button confirmButton = bottomSheetDialog.findViewById(R.id.confirmButton);
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setAlarm();
+                // 이름(nameEditText.getText()), 설명(descriptionEditText.getText()), 시간 등을 사용하여 알림 추가
+                // 추가 코드를 작성하세요.
+                // 예: addNotification(nameEditText.getText().toString(), descriptionEditText.getText().toString(), ...);
+
+                // 팝업 닫기
+                bottomSheetDialog.dismiss();
+            }
+        });
+
+        Button cancelButton = bottomSheetDialog.findViewById(R.id.cancelButton);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetDialog.dismiss();
             }
         });
 
@@ -160,6 +201,10 @@ public class TodoMainActivity extends AppCompatActivity {
                         intent = new Intent(TodoMainActivity.this, DiaryWriteActivity.class);
                         startActivity(intent);
                         break;
+                    case R.id.item_checklist:
+                        intent = new Intent(TodoMainActivity.this, TodoMainActivity.class);
+                        startActivity(intent);
+                        break;
                 }
 
                 // 네비게이션 드로어 닫기
@@ -168,23 +213,7 @@ public class TodoMainActivity extends AppCompatActivity {
             }
         });
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.menu_bottom_navigation);
 
-        final View rootView = findViewById(R.id.drawer_layout);
-
-        rootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                int heightDiff = rootView.getRootView().getHeight() - rootView.getHeight();
-                if (heightDiff > 100) {
-                    // 키보드가 나타난 경우
-                    hideBottomNavigation();
-                } else {
-                    // 키보드가 사라진 경우
-                    showBottomNavigation();
-                }
-            }
-        });
     }
 
     private void toggleAlarm(int position) {

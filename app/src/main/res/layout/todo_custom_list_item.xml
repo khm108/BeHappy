@@ -2,22 +2,49 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/todo_box" >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="50dp"
+        android:paddingTop="48dp"
+        android:src="@drawable/todo_icon_flag" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:letterSpacing="0.04"
+        android:lineSpacingExtra="5dp"
+        android:paddingLeft="70dp"
+        android:paddingTop="45dp"
+        android:text="Morning Task 1"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        android:typeface="sans" />
 
     <TextView
         android:id="@+id/alarmText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:paddingLeft="70dp"
         android:text="알람 텍스트"
-        android:layout_toLeftOf="@+id/switchBtn"
-        android:paddingRight="10dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="20sp" />
 
     <Switch
         android:id="@+id/switchBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:paddingRight="70dp"
         android:focusable="false"
-        android:focusableInTouchMode="false" />
+        android:focusableInTouchMode="false"
+        android:src="@drawable/todo_icon_on" />
+
 </RelativeLayout>
