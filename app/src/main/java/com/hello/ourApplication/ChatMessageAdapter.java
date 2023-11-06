@@ -19,42 +19,42 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 public class ChatMessageAdapter extends ArrayAdapter {
-//    List msgs = new ArrayList<ChatMessage>();
     private TextView chatText;
     private List chatMessageList = new ArrayList<ChatMessage>();
     private LinearLayout singleMessageContainer;
 
+    // ChatMessage 객체를 어댑터에 추가
     public void add(@Nullable ChatMessage object) {
         chatMessageList.add(object);
         super.add(object);
     }
 
+    // 생성자
     public ChatMessageAdapter(@NonNull Context context, int textViewResourceId) {
         super(context, textViewResourceId);
     }
 
+    // 어댑터에 있는 채팅 메시지의 개수 반환
     @Override
     public int getCount() {
         return this.chatMessageList.size();
     }
 
+    // 지정된 인덱스에 있는 채팅 메시지 객체 반환
     @Nullable
     @Override
     public ChatMessage getItem(int index) {
         return (ChatMessage) this.chatMessageList.get(index);
     }
 
+    // 채팅 메시지를 표시하는 뷰 생성 및 설정
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-//        View row = convertView;
-//        if(row==null){
-//            // inflator를 생성하여, chatting_message.xml을 읽어서 View객체로 생성한다.
-//            LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//            row = inflater.inflate(R.layout.chatting_message, parent, false);
-//        }
+
         View row = convertView;
         if (row == null) {
+            // 새로운 행 뷰를 생성
             LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(R.layout.chatting_message, parent, false);
         }
@@ -63,21 +63,18 @@ public class ChatMessageAdapter extends ArrayAdapter {
         ChatMessage chatMessageObj = getItem(position);
         chatText = (TextView) row.findViewById(R.id.singleMessage);
         chatText.setText(chatMessageObj.message);
+
+        //left -> true: GPT, false: user
+        // 채팅 메시지의 왼쪽 또는 오른쪽에 배경 이미지 설정
         chatText.setBackgroundResource(chatMessageObj.left ? R.drawable.bubble_a : R.drawable.bubble_b);
+
+        // 채팅 메시지의 텍스트 정렬을 왼쪽 또는 오른쪽으로 설정
         singleMessageContainer.setGravity(chatMessageObj.left ? Gravity.LEFT : Gravity.RIGHT);
         return row;
 
-//        // Array List에 들어 있는 채팅 문자열을 읽음.
-//        ChatMessage msg = (ChatMessage) msgs.get(position);
-//
-//        // Inflater를 이용해서 생성한 View에, ChatMessage 삽입
-//        TextView msgText = (TextView) row.findViewById(R.id.chatmessage);
-//        msgText.setText(msg.getMessage());
-//        msgText.setTextColor(Color.parseColor("#000000"));
-//
-//        return row;
     }
 
+    // 바이트 배열을 비트맵으로 디코딩하는 메서드
     public Bitmap decodeToBitmap(byte[] decodedByte) {
         return BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.length);
     }
