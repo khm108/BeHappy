@@ -7,7 +7,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,12 +15,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -29,6 +23,8 @@ import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
+
+
 
     Toolbar toolbar;
     DrawerLayout drawerLayout;
@@ -39,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -74,9 +71,10 @@ public class MainActivity extends AppCompatActivity {
         completedTasksTextView.setText(newText2);
 
         ImageButton buttonDiary = findViewById(R.id.mainButton_diary); // 메인화면 버튼: 다이어리
-        ImageButton buttoncalendar = findViewById(R.id.mainButton_calendar); // 메인화면 버튼: 달력
         ImageButton buttonRecommend = findViewById(R.id.mainButton_recommend); // 메인화면 버튼: 포켓가든
         ImageButton buttonChat = findViewById(R.id.mainButton_chat); // 메인화면 버튼: 채팅
+        ImageButton buttoncalendar = findViewById(R.id.mainButton_calendar); // 메인화면 버튼: 달력
+
 
         // 다이어리 버튼 클릭시
         buttonDiary.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // 추천 버튼 클릭시
+         //추천 버튼 클릭시
         buttonRecommend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,6 +137,11 @@ public class MainActivity extends AppCompatActivity {
                         intent = new Intent(MainActivity.this, TodoMainActivity.class);
                         startActivity(intent);
                         break;
+                    case R.id.item_pocket_garden:
+                        intent = new Intent(MainActivity.this, getMainUnityActivityClass());
+                        startActivity(intent);
+                        break;
+
                 }
 
                 // 네비게이션 드로어 닫기
@@ -151,6 +154,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    private Class getMainUnityActivityClass() {
+        return findClassUsingReflection("com.hello.ourApplication.MainUnityActivity");
+    }
+
+    private Class findClassUsingReflection(String className) {
+        try {
+            return Class.forName(className);
+        } catch (final ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.navi_menu, menu);
