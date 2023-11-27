@@ -24,8 +24,18 @@
                 android:id="@+id/toolbar"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:theme="@style/Theme.NavigationDrawer">
-            </androidx.appcompat.widget.Toolbar>
+                android:theme="@style/Theme.NavigationDrawer"></androidx.appcompat.widget.Toolbar>
+
+            <TextView
+                android:id="@+id/dateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:text="날짜"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -58,16 +68,19 @@
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
+                    android:hint = "Write your message"
+                    android:textColorHint="#D2D1D1"
                     android:layout_toLeftOf="@+id/buttonSend" />
 
-                <Button
+                <ImageButton
+                    android:id="@+id/buttonSend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Send"
-                    android:id="@+id/buttonSend"
                     android:layout_alignBottom="@+id/chatText"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/chat_send"
+                    android:background="#00FFFFFF"/>
             </RelativeLayout>
 
         </LinearLayout>
