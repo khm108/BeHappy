@@ -27,7 +27,12 @@ public class TodoAlarmAdapter extends ArrayAdapter<TodoAlarm> {
         TextView alarmText = convertView.findViewById(R.id.alarmText);
         Switch switchBtn = convertView.findViewById(R.id.switchBtn);
 
-        alarmText.setText(alarm.toString());
+        int hour = alarm.getHour();
+        int minute = alarm.getMinute();
+        String name = alarm.getName();
+
+        String timeText = String.format("%s\n%02d시 %02d분", name, hour, minute);
+        alarmText.setText(timeText);
 
         // 스위치 상태 설정
         switchBtn.setChecked(alarm.isAlarmOn());

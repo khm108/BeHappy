@@ -91,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
         buttoncalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 달력 아직 미완이라 일기로 연결
-                Intent intent = new Intent(MainActivity.this, DiaryMainActivity.class);
+                // 일단 Todo로 해놓았어요
+                Intent intent = new Intent(MainActivity.this, TodoMainActivity.class);
                 startActivity(intent);
             }
         });

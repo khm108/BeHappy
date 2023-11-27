@@ -8,227 +8,251 @@
     android:background="@drawable/gradient"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical"
-        tools:context=".MainActivity">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/Theme.NavigationDrawer"></androidx.appcompat.widget.Toolbar>
+            android:theme="@style/Theme.NavigationDrawer">
 
-        <TextView
-            android:id="@+id/dateTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:text="날짜"
-            android:textSize="20sp"
-            android:textColor="#FFFFFF"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:text="-우울증 관련 위로되는 글귀-"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp" />
+        </com.google.android.material.appbar.AppBarLayout>
 
-        <TextView
-            android:id="@+id/plannedTasksTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:text="♥ 오늘 계획한 할 일: a개"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/completedTasksTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:text="♥ 오늘 완료한 할 일: b개"
-            android:textSize="20sp" />
-
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:orientation="horizontal">
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                tools:context=".MainActivity">
 
-                <ImageButton
-                    android:id="@+id/mainButton_diary"
-                    android:layout_width="wrap_content"
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:background="#00FFFFFF"
-                    android:src="@drawable/leaf" />
+                    android:theme="@style/Theme.NavigationDrawer"></androidx.appcompat.widget.Toolbar>
 
                 <TextView
-                    android:id="@+id/leaf1"
+                    android:id="@+id/dateTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:layout_alignLeft="@+id/mainButton_diary"
-                    android:layout_alignTop="@+id/mainButton_diary"
-                    android:layout_alignRight="@+id/mainButton_diary"
-                    android:layout_alignBottom="@+id/mainButton_diary"
-
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/himelody"
-                    android:gravity="center"
-                    android:letterSpacing="0.04"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="5dp"
-                    android:text="일기"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="30dp"
+                    android:text="날짜"
                     android:textColor="#FFFFFF"
-                    android:textSize="35sp"
-                    android:textStyle="normal|bold"
-                    android:typeface="sans" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp">
-
-                <ImageButton
-                    android:id="@+id/mainButton_calendar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:background="#00FFFFFF"
-                    android:src="@drawable/leaf" />
+                    android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/leaf2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:layout_alignLeft="@+id/mainButton_calendar"
-                    android:layout_alignTop="@+id/mainButton_calendar"
-                    android:layout_alignRight="@+id/mainButton_calendar"
-                    android:layout_alignBottom="@+id/mainButton_calendar"
-
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/himelody"
-                    android:gravity="center"
-                    android:letterSpacing="0.04"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="5dp"
-                    android:text="달력"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="30dp"
+                    android:text="-우울증 관련 위로되는 글귀-"
                     android:textColor="#FFFFFF"
-                    android:textSize="35sp"
-                    android:textStyle="normal|bold"
-                    android:typeface="sans" />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:id="@+id/mainButton_recommend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:background="#00FFFFFF"
-                    android:src="@drawable/leaf" />
+                    android:textSize="30sp" />
 
                 <TextView
-                    android:id="@+id/leaf3"
+                    android:id="@+id/plannedTasksTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:layout_alignLeft="@+id/mainButton_recommend"
-                    android:layout_alignTop="@+id/mainButton_recommend"
-                    android:layout_alignRight="@+id/mainButton_recommend"
-                    android:layout_alignBottom="@+id/mainButton_recommend"
-
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/himelody"
-                    android:gravity="center"
-                    android:letterSpacing="0.04"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="5dp"
-                    android:text="추천"
-                    android:textColor="#FFFFFF"
-                    android:textSize="35sp"
-                    android:textStyle="normal|bold"
-                    android:typeface="sans" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp">
-
-                <ImageButton
-                    android:id="@+id/mainButton_chat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:background="#00FFFFFF"
-                    android:src="@drawable/leaf" />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:text="♥ 오늘 계획한 할 일: a개"
+                    android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/leaf4"
+                    android:id="@+id/completedTasksTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text="♥ 오늘 완료한 할 일: b개"
+                    android:textSize="20sp" />
 
-                    android:layout_alignLeft="@+id/mainButton_chat"
-                    android:layout_alignTop="@+id/mainButton_chat"
-                    android:layout_alignRight="@+id/mainButton_chat"
-                    android:layout_alignBottom="@+id/mainButton_chat"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="30dp"
+                    android:orientation="horizontal">
 
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/himelody"
-                    android:gravity="center"
-                    android:letterSpacing="0.04"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="5dp"
-                    android:text="채팅"
-                    android:textColor="#FFFFFF"
-                    android:textSize="35sp"
-                    android:textStyle="normal|bold"
-                    android:typeface="sans" />
-            </RelativeLayout>
-        </LinearLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/edit_home_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:text="✓  홈 화면 수정하기"
-            android:textColor="#979292"
-            android:textSize="18sp" />
+                        <ImageButton
+                            android:id="@+id/mainButton_diary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:background="#00FFFFFF"
+                            android:src="@drawable/leaf" />
+
+                        <TextView
+                            android:id="@+id/leaf1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_alignLeft="@+id/mainButton_diary"
+                            android:layout_alignTop="@+id/mainButton_diary"
+                            android:layout_alignRight="@+id/mainButton_diary"
+                            android:layout_alignBottom="@+id/mainButton_diary"
+
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/himelody"
+                            android:gravity="center"
+                            android:letterSpacing="0.04"
+                            android:paddingLeft="15dp"
+                            android:paddingTop="5dp"
+                            android:text="일기"
+                            android:textColor="#FFFFFF"
+                            android:textSize="35sp"
+                            android:textStyle="normal|bold"
+                            android:typeface="sans" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp">
+
+                        <ImageButton
+                            android:id="@+id/mainButton_calendar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:background="#00FFFFFF"
+                            android:src="@drawable/leaf" />
+
+                        <TextView
+                            android:id="@+id/leaf2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_alignLeft="@+id/mainButton_calendar"
+                            android:layout_alignTop="@+id/mainButton_calendar"
+                            android:layout_alignRight="@+id/mainButton_calendar"
+                            android:layout_alignBottom="@+id/mainButton_calendar"
+
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/himelody"
+                            android:gravity="center"
+                            android:letterSpacing="0.04"
+                            android:paddingLeft="15dp"
+                            android:paddingTop="5dp"
+                            android:text="Todo"
+                            android:textColor="#FFFFFF"
+                            android:textSize="35sp"
+                            android:textStyle="normal|bold"
+                            android:typeface="sans" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="30dp"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageButton
+                            android:id="@+id/mainButton_recommend"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:background="#00FFFFFF"
+                            android:src="@drawable/leaf" />
+
+                        <TextView
+                            android:id="@+id/leaf3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_alignLeft="@+id/mainButton_recommend"
+                            android:layout_alignTop="@+id/mainButton_recommend"
+                            android:layout_alignRight="@+id/mainButton_recommend"
+                            android:layout_alignBottom="@+id/mainButton_recommend"
+
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/himelody"
+                            android:gravity="center"
+                            android:letterSpacing="0.04"
+                            android:paddingLeft="15dp"
+                            android:paddingTop="5dp"
+                            android:text="추천"
+                            android:textColor="#FFFFFF"
+                            android:textSize="35sp"
+                            android:textStyle="normal|bold"
+                            android:typeface="sans" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp">
+
+                        <ImageButton
+                            android:id="@+id/mainButton_chat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:background="#00FFFFFF"
+                            android:src="@drawable/leaf" />
+
+                        <TextView
+                            android:id="@+id/leaf4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_alignLeft="@+id/mainButton_chat"
+                            android:layout_alignTop="@+id/mainButton_chat"
+                            android:layout_alignRight="@+id/mainButton_chat"
+                            android:layout_alignBottom="@+id/mainButton_chat"
+
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/himelody"
+                            android:gravity="center"
+                            android:letterSpacing="0.04"
+                            android:paddingLeft="15dp"
+                            android:paddingTop="5dp"
+                            android:text="채팅"
+                            android:textColor="#FFFFFF"
+                            android:textSize="35sp"
+                            android:textStyle="normal|bold"
+                            android:typeface="sans" />
+                    </RelativeLayout>
+                </LinearLayout>
+                <!--
+                        <TextView
+                            android:id="@+id/edit_home_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:text="✓  홈 화면 수정하기"
+                            android:textColor="#979292"
+                            android:textSize="18sp" /> -->
+
+
+            </LinearLayout>
+
+        </ScrollView>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/menu_bottom_navigation"
@@ -240,15 +264,15 @@
             app:labelVisibilityMode="labeled"
             app:menu="@menu/menu_bar" />
 
-    </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
         android:background="#93AA64"
+        android:fitsSystemWindows="true"
         app:headerLayout="@layout/navi_header"
         app:menu="@menu/navi_menu" />
 

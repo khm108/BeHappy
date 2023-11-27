@@ -8,73 +8,95 @@
     android:background="@drawable/gradient"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical"
-        tools:context=".MainActivity">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:theme="@style/Theme.NavigationDrawer">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:theme="@style/Theme.NavigationDrawer"></androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
 
-            <TextView
-                android:id="@+id/dateTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:text="날짜"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/background_white">
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <EditText
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:gravity="center"
-                android:hint="오늘 하루를 기록해 보세요~!"
-                android:textColor="#334410"
-                android:textSize="25sp" />
-
-            <ImageButton
-                android:id="@+id/diary_content_complete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:src="@drawable/diary_write_complete"
-                android:background="#00FFFFFF" />
-
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/menu_bottom_navigation"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_gravity="bottom|end"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/menu_bar"
-                app:labelVisibilityMode="labeled"
-                app:menu="@menu/menu_bar" />
-        </LinearLayout>
+                android:orientation="vertical"
+                tools:context=".MainActivity">
 
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/Theme.NavigationDrawer"></androidx.appcompat.widget.Toolbar>
+
+                    <TextView
+                        android:id="@+id/dateTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:text="날짜"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_white"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="30dp"
+                        android:gravity="center"
+                        android:hint="오늘 하루를 기록해 보세요~!"
+                        android:textColor="#334410"
+                        android:textSize="25sp" />
+
+                    <ImageButton
+                        android:id="@+id/diary_content_complete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="30dp"
+                        android:background="#00FFFFFF"
+                        android:src="@drawable/diary_write_complete" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/menu_bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/menu_bar"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/menu_bar" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
@@ -85,5 +107,6 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/navi_header"
         app:menu="@menu/navi_menu" />
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

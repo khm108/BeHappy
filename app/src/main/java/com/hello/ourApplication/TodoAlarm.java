@@ -14,11 +14,11 @@ public class TodoAlarm {
     private boolean isAlarmOn;
     private boolean isSwitchVisible;
 
-    public TodoAlarm(int id, int hour, int minute, String message) {
+    public TodoAlarm(int id, int hour, int minute, String name) {
         this.id = id;
         this.hour = hour;
         this.minute = minute;
-        this.message = message;
+        this.name = name;
         this.isSwitchVisible = true; // 스위치 버튼을 기본적으로 보이게 설정
     }
 
@@ -36,6 +36,9 @@ public class TodoAlarm {
 
     public String getMessage() {
         return message;
+    }
+    public String getName() {
+        return name;
     }
 
     public long getTimeInMillis() {
@@ -56,7 +59,7 @@ public class TodoAlarm {
 
     @Override
     public String toString() {
-        return String.format("%02d:%02d - %s", hour, minute, message);
+        return String.format("%02d:%02d - %s", hour, minute, name);
     }
 
     public void setAlarmOn(boolean alarmOn) {
@@ -71,12 +74,4 @@ public class TodoAlarm {
         return isAlarmOn;
     }
 
-    // 알람 이름과 관련된 메서드
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
