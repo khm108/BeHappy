@@ -13,14 +13,14 @@
     <androidx.viewpager2.widget.ViewPager2
         android:layout_width="350dp"
         android:layout_height="470dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:id="@+id/viewpager" />
 
     <ImageButton
         android:id="@+id/tut_button_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/tut_button_login"
         android:background="#00FFFFFF"/>
 
