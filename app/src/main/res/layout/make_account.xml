@@ -42,6 +42,8 @@
                     android:theme="@style/Theme.NavigationDrawer">
 
                     <ImageButton
+                        android:id="@+id/toolbar_main"
+                        android:onClick="onToolbarMainButtonClick"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="right"
@@ -79,7 +81,7 @@
                         android:ems="10"
                         android:gravity="center"
                         android:inputType="textPersonName"
-                        android:text="[이름]"
+                        android:hint="[이름]"
                         android:textAlignment="center"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -87,41 +89,54 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_weight="1"
                     android:orientation="horizontal"
                     android:paddingLeft="50dp"
                     android:paddingRight="50dp">
 
                     <EditText
                         android:id="@+id/editTextTextPersonNameID"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="200dp"
+                        android:layout_height="50dp"
                         android:layout_marginBottom="10dp"
-                        android:layout_weight="1"
                         android:ems="10"
                         android:gravity="center"
                         android:inputType="textPersonName"
-                        android:text="[ID]"
+                        android:hint="[ID]"
                         android:textAlignment="center"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
-                    <Button
+                    <android.widget.Button
                         android:id="@+id/button3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4"
+                        android:layout_width="90dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="20dp"
+                        android:background="#5E064208"
                         android:text="중복체크"
-                        app:backgroundTint="#3F51B5"
-                        app:iconPadding="20dp" />
+                        android:textColor="#FFFFFF" />
 
                 </LinearLayout>
 
+                <EditText
+                    android:id="@+id/editTextTextPersonNameID"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="textPersonName"
+                    android:hint="[Password]"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_weight="6"
                     android:orientation="horizontal"
@@ -129,37 +144,38 @@
                     android:paddingRight="50dp">
 
                     <EditText
-                        android:id="@+id/editTextTextPersonNamePassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:id="@+id/editTextTextPersonNameID"
+                        android:layout_width="200dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="10dp"
                         android:ems="10"
                         android:gravity="center"
                         android:inputType="textPersonName"
-                        android:text="[Password]"
+                        android:hint="[Password]"
                         android:textAlignment="center"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
-                    <Button
-                        android:id="@+id/button4"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4"
-                        android:text="중복체크"
-                        app:backgroundTint="#3F51B5"
-                        app:iconPadding="0dp" />
+                    <android.widget.Button
+                        android:id="@+id/button3"
+                        android:layout_width="90dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="20dp"
+                        android:background="#5E064208"
+                        android:text="확인"
+                        android:textColor="#FFFFFF" />
 
                 </LinearLayout>
 
-                <Button
+                <android.widget.Button
                     android:id="@+id/button5"
-                    android:layout_width="200dp"
-                    android:layout_height="70dp"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#51FFB300"
                     android:text="계정 생성"
-                    app:backgroundTint="#347C37" />
+                    android:textSize="20sp"/>
 
             </LinearLayout>
         </ScrollView>

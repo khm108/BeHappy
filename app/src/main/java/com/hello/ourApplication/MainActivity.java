@@ -119,8 +119,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.item_chat: // "채팅하기" 메뉴 클릭 시
+                        Intent intent = new Intent(MainActivity.this, ChatMainActivity.class);
+                        startActivity(intent);
+                        break;
                     case R.id.item_recommend: // "추천받기" 메뉴 클릭 시
-                        Intent intent = new Intent(MainActivity.this, RecommendActivity.class);
+                        intent = new Intent(MainActivity.this, RecommendActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.item_diary: // "일기 모아보기" 메뉴 클릭 시
@@ -147,6 +151,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        BottomNavigationView bottomNavigationView = findViewById(R.id.menu_bottom_navigation);
+
+        // BottomNavigationView의 아이템 클릭 리스너 설정
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.menu_bar_home:
+                    // 홈 버튼 클릭 시
+                    startActivity(new Intent(MainActivity.this, MainActivity.class));
+                    return true;
+                case R.id.menu_bar_chat:
+                    // 채팅 버튼 클릭 시
+                    startActivity(new Intent(MainActivity.this, ChatMainActivity.class));
+                    return true;
+                case R.id.menu_bar_calendar:
+                    // 캘린더 버튼 클릭 시
+                    startActivity(new Intent(MainActivity.this, TodoMainActivity.class));
+                    return true;
+                default:
+                    return false;
+            }
+        });
 
 
     }

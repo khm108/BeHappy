@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.hello.ourApplication.DiarySelectKeywordActivity;
 
@@ -70,8 +72,12 @@ public class DiaryProcessActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.item_chat: // "채팅하기" 메뉴 클릭 시
+                        Intent intent = new Intent(DiaryProcessActivity.this, ChatMainActivity.class);
+                        startActivity(intent);
+                        break;
                     case R.id.item_recommend: // "추천받기" 메뉴 클릭 시
-                        Intent intent = new Intent(DiaryProcessActivity.this, RecommendActivity.class);
+                        intent = new Intent(DiaryProcessActivity.this, RecommendActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.item_diary: // "일기 모아보기" 메뉴 클릭 시
@@ -95,6 +101,28 @@ public class DiaryProcessActivity extends AppCompatActivity {
                 // 네비게이션 드로어 닫기
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
+            }
+        });
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.menu_bottom_navigation);
+
+        // BottomNavigationView의 아이템 클릭 리스너 설정
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.menu_bar_home:
+                    // 홈 버튼 클릭 시
+                    startActivity(new Intent(DiaryProcessActivity.this, MainActivity.class));
+                    return true;
+                case R.id.menu_bar_chat:
+                    // 채팅 버튼 클릭 시
+                    startActivity(new Intent(DiaryProcessActivity.this, ChatMainActivity.class));
+                    return true;
+                case R.id.menu_bar_calendar:
+                    // 캘린더 버튼 클릭 시
+                    startActivity(new Intent(DiaryProcessActivity.this, TodoMainActivity.class));
+                    return true;
+                default:
+                    return false;
             }
         });
     }
