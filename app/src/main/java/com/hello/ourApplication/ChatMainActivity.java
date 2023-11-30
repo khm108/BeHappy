@@ -95,44 +95,6 @@ public class ChatMainActivity extends AppCompatActivity{
         // TextView에 날짜 표시
         dateTextView.setText(formattedDate);
 
-//        buttonSend = (ImageButton) findViewById(R.id.buttonSend); // 버튼 위젯을 찾음
-//
-//        listView = (ListView) findViewById(R.id.chat_listView); // 대화 목록을 표시할 ListView 위젯을 찾음
-//
-//        chatMessageAdapter = new ChatMessageAdapter(getApplicationContext(), R.layout.chatting_message);
-//        listView.setAdapter(chatMessageAdapter); // ListView에 대화 메시지를 표시하기 위한 어댑터 설정
-//
-//        chatText = (EditText) findViewById(R.id.chatText); // 사용자 입력을 받을 EditText 위젯을 찾음
-//        chatText.setOnKeyListener(new View.OnKeyListener() {
-//            public boolean onKey(View v, int keyCode, KeyEvent event) {
-//                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-//                    sendChatMessage(); // 엔터 키를 누르면 채팅 메시지를 보내도록 설정
-//                    return sendChatMessage();
-//                }
-//                return false;
-//            }
-//        });
-//
-//        buttonSend.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View arg0) {
-//                sendChatMessage();
-//                sendChatMessage();
-//            } // "보내기" 버튼을 클릭하면 채팅 메시지를 보내도록 설정
-//        });
-//
-//        listView.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL); // ListView가 항상 아래로 스크롤되도록 설정
-//        listView.setAdapter(chatMessageAdapter);
-//
-//        //to scroll the list view to bottom on data change
-//        chatMessageAdapter.registerDataSetObserver(new DataSetObserver() {
-//            @Override
-//            public void onChanged() {
-//                super.onChanged();
-//                listView.setSelection(chatMessageAdapter.getCount() - 1); // 데이터가 변경될 때마다 ListView를 가장 아래로 스크롤
-//            }
-//        });
-
         recycler_view = findViewById(R.id.recycler_view);
         et_msg = findViewById(R.id.et_msg);
         btn_send = findViewById(R.id.btn_send);
@@ -249,6 +211,7 @@ public class ChatMainActivity extends AppCompatActivity{
         RequestBody body = RequestBody.create(object.toString(), JSON);
         Request request = new Request.Builder()
                 .url("https://api.openai.com/v1/chat/completions")
+                // 이 링크 동작 안할시 https://api.openai.com/v1/completions 사용
                 .header("Authorization", "Bearer " + MY_SECRET_KEY)
                 .post(body)
                 .build();
@@ -298,19 +261,4 @@ public class ChatMainActivity extends AppCompatActivity{
             super.onBackPressed();
         }
     }
-
-
-//    private boolean sendChatMessage() {
-//        if(side == false){
-//            chatMessageAdapter.add(new ChatMessage(side, chatText.getText().toString())); // 대화 메시지 어댑터에 메시지 추가
-//            chatText.setText(""); // 입력 필드 초기화
-//            side = !side; // 대화창 오른쪽/왼쪽 배치를 번갈아가며 변경
-//        }
-//        else if(side == true){
-//            chatMessageAdapter.add(new ChatMessage(side, "기분이 좋지 않을땐 쉬는것도 좋아")); // 대화 메시지 어댑터에 메시지 추가
-//            chatText.setText(""); // 입력 필드 초기화
-//            side = !side; // 대화창 오른쪽/왼쪽 배치를 번갈아가며 변경
-//        }
-//        return true;
-//    }
 }
