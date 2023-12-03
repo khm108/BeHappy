@@ -6,6 +6,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ArrayAdapter;
+import android.widget.CalendarView;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -58,10 +60,11 @@ public class TodoMainActivity extends AppCompatActivity {
 
     private Button addNotificationButton;
     private LinearLayout popupLayout;
-    private EditText nameEditText;
-    private EditText descriptionEditText;
+    private EditText alarmName;
+    private EditText alarmMemo;
 
     private TimePicker timePicker;
+    private DatePicker datePicker;
     private Button setAlarmButton;
     private ListView alarmListView;
 
@@ -85,8 +88,8 @@ public class TodoMainActivity extends AppCompatActivity {
 
         ImageButton todoAddButton = findViewById(R.id.todo_add);
         popupLayout = findViewById(R.id.popupLayout);
-        nameEditText = findViewById(R.id.nameEditText);
-        descriptionEditText = findViewById(R.id.descriptionEditText);
+        alarmName = findViewById(R.id.alarmName);
+        alarmMemo = findViewById(R.id.alarmMemo);
 
         /*
         // "알림 추가" 버튼 클릭 시 팝업 표시
@@ -123,9 +126,9 @@ public class TodoMainActivity extends AppCompatActivity {
          */
 
         timePicker = findViewById(R.id.timePicker);
+        datePicker = findViewById(R.id.datePicker);
         setAlarmButton = findViewById(R.id.confirmButton);
         alarmListView = findViewById(R.id.alarmListView);
-        nameEditText = findViewById(R.id.nameEditText);
 
         adapter = new TodoAlarmAdapter(this, alarmList);
         alarmListView.setAdapter(adapter);
@@ -266,15 +269,19 @@ public class TodoMainActivity extends AppCompatActivity {
     }
 
     private void setAlarm() {
+        int year = datePicker.getYear();
+        int month = datePicker.getMonth();
+        int day = datePicker.getDayOfMonth();
         int hour = timePicker.getCurrentHour();
         int minute = timePicker.getCurrentMinute();
-        String name = nameEditText.getText().toString();
+        String name = alarmName.getText().toString();
+        String memo = alarmMemo.getText().toString();
 
-        TodoAlarm alarm = new TodoAlarm(alarmIdCounter++, hour, minute, name);
+        TodoAlarm alarm = new TodoAlarm(alarmIdCounter++, year, month, day, hour, minute, name);
         alarmList.add(alarm);
         adapter.notifyDataSetChanged();
 
-        String alarmTime = String.format("%02d:%02d", hour, minute);
+        String alarmTime = String.format("%02d:%02d on %d/%02d/%02d", hour, minute, year, month + 1, day);
         Toast.makeText(this, "알람이 " + alarmTime + "에 설정되었습니다.\n알림 이름: " + name, Toast.LENGTH_SHORT).show();
 
         setSingleAlarm(alarm);
