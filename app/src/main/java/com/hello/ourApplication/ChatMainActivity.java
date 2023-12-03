@@ -65,7 +65,7 @@ public class ChatMainActivity extends AppCompatActivity{
 
     OkHttpClient client;
 
-    private static final String MY_SECRET_KEY = "******";
+    private static final String MY_SECRET_KEY = "****";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
