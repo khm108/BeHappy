@@ -73,7 +73,6 @@
                         android:background="#00FFFFFF"
                         android:src="@drawable/todo_plus" />
 
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -130,7 +129,7 @@
                     android:visibility="gone">
 
                     <EditText
-                        android:id="@+id/nameEditText"
+                        android:id="@+id/alarmName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -139,13 +138,22 @@
                         android:singleLine="true" />
 
                     <EditText
-                        android:id="@+id/descriptionEditText"
+                        android:id="@+id/alarmMemo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:hint="Description"
                         android:singleLine="true" />
+
+                    <DatePicker
+                        android:id="@+id/datePicker"
+                        style="@style/MyTimePickerStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:datePickerMode="calendar"/>
 
                     <TimePicker
                         android:id="@+id/timePicker"
