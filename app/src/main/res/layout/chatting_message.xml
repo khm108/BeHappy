@@ -1,61 +1,76 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
 
     <LinearLayout
-        android:id="@+id/singleMessageContainer"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-<!--        -->
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/left_chat_view"
+        android:gravity="left">
 
-<!--        <ImageView-->
-<!--            android:id = "@+id/chat_GPTProfile"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:src="@drawable/avocado"/>-->
-        <TextView
-            android:id="@+id/singleMessage"
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/seed"
+            android:padding="8dp"/>
+
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="#EFEFEF"
+            android:layout_marginEnd="30dp"
             android:layout_gravity="center"
-            android:layout_margin="5dip"
-            android:background="@drawable/bubble_b"
-            android:paddingLeft="10dip"
-            android:text="Hello bubbles!"
-            android:textColor="@android:color/primary_text_light" />
+            android:padding="15dp"
+            >
 
-<!--        <RelativeLayout-->
-<!--            android:id="@+id/form"-->
-<!--            android:layout_width="fill_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentBottom="true"-->
-<!--            android:layout_alignParentLeft="true"-->
-<!--            android:orientation="vertical" >-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/left_chat_tv"
+                android:textColor="#001E2F"
+                android:textSize="15sp"
+                android:text="Hello World"/>
 
-<!--            <EditText-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:inputType="textMultiLine"-->
-<!--                android:ems="10"-->
-<!--                android:id="@+id/chatText"-->
-<!--                android:layout_alignParentBottom="true"-->
-<!--                android:layout_alignParentLeft="true"-->
-<!--                android:layout_alignParentStart="true"-->
-<!--                android:hint = "Write your message"-->
-<!--                android:textColorHint="#D2D1D1"-->
-<!--                android:layout_toLeftOf="@+id/buttonSend" />-->
-
-<!--            <ImageButton-->
-<!--                android:id="@+id/buttonSend"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_alignBottom="@+id/chatText"-->
-<!--                android:layout_alignParentRight="true"-->
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:src="@drawable/chat_send"-->
-<!--                android:background="#00FFFFFF"/>-->
-<!--        </RelativeLayout>-->
+        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:id="@+id/right_chat_view">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="#C0D98D"
+            android:layout_marginStart="80dp"
+            android:padding="15dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/right_chat_tv"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:text="Hello World"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/profile_img"
+            android:padding="8dp"/>
+    </LinearLayout>
+
+</RelativeLayout>
