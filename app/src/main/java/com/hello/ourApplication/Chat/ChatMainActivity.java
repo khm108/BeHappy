@@ -1,7 +1,6 @@
-package com.hello.ourApplication;
+package com.hello.ourApplication.Chat;
 
 import android.content.Intent;
-import android.database.DataSetObserver;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,20 +12,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.os.Message;
-import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.hello.ourApplication.Diary.DiaryMainActivity;
+import com.hello.ourApplication.Diary.DiaryWriteActivity;
+import com.hello.ourApplication.R;
+import com.hello.ourApplication.RecommendActivity;
+import com.hello.ourApplication.TestActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;

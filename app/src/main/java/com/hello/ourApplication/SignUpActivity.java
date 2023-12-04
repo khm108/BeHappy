@@ -1,24 +1,25 @@
 package com.hello.ourApplication;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.hello.ourApplication.Chat.ChatMainActivity;
+import com.hello.ourApplication.Diary.DiaryMainActivity;
+import com.hello.ourApplication.Diary.DiaryWriteActivity;
+import com.hello.ourApplication.Todo.TodoMainActivity;
 
-public class SignInActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     DrawerLayout drawerLayout;
@@ -27,9 +28,9 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sign_in);
+        setContentView(R.layout.sign_up);
 
-        Button googleLogin = (Button)findViewById(R.id.google_login);
+        Button signUpDoneButton = (Button)findViewById(R.id.signUpDoneButton);
 
 
 
@@ -55,27 +56,27 @@ public class SignInActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.item_chat: // "채팅하기" 메뉴 클릭 시
-                        Intent intent = new Intent(SignInActivity.this, ChatMainActivity.class);
+                        Intent intent = new Intent(SignUpActivity.this, ChatMainActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.item_recommend: // "추천받기" 메뉴 클릭 시
-                        intent = new Intent(SignInActivity.this, RecommendActivity.class);
+                        intent = new Intent(SignUpActivity.this, RecommendActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.item_diary: // "일기 모아보기" 메뉴 클릭 시
-                        intent = new Intent(SignInActivity.this, DiaryMainActivity.class);
+                        intent = new Intent(SignUpActivity.this, DiaryMainActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.item_test: // "우울증 자가 진단" 메뉴 클릭 시
-                        intent = new Intent(SignInActivity.this, TestActivity.class);
+                        intent = new Intent(SignUpActivity.this, TestActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.item_diary_new: // "일기 작성하기" 메뉴 클릭 시
-                        intent = new Intent(SignInActivity.this, DiaryWriteActivity.class);
+                        intent = new Intent(SignUpActivity.this, DiaryWriteActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.item_checklist:
-                        intent = new Intent(SignInActivity.this, TodoMainActivity.class);
+                        intent = new Intent(SignUpActivity.this, TodoMainActivity.class);
                         startActivity(intent);
                         break;
                 }

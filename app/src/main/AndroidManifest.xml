@@ -17,6 +17,7 @@
         android:label=""
         android:supportsRtl="true"
         android:theme="@style/Theme.OurApplication"
+        android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustPan"
         tools:targetApi="31">
         <activity
@@ -31,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ChatMainActivity"
+            android:name=".Chat.ChatMainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,7 +40,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TutorialActivity"
+            android:name=".Tutorial.TutorialActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,7 +48,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignInActivity">
+            android:name=".LoginActivity">
         </activity>
         <activity
             android:name=".RecommendActivity">
@@ -56,25 +57,25 @@
             android:name=".TestActivity">
         </activity>
         <activity
-            android:name=".DiaryMainActivity">
+            android:name=".Diary.DiaryMainActivity">
         </activity>
         <activity
-            android:name=".DiaryWriteActivity">
+            android:name=".Diary.DiaryWriteActivity">
         </activity>
         <activity
-            android:name=".DiaryPhotoActivity">
+            android:name=".Diary.DiaryPhotoActivity">
         </activity>
         <activity
-            android:name=".DiarySelectKeywordActivity">
+            android:name=".Diary.DiarySelectKeywordActivity">
         </activity>
         <activity
-            android:name=".DiaryProcessActivity">
+            android:name=".Diary.DiaryProcessActivity">
         </activity>
         <activity
-            android:name=".TodoMainActivity">
+            android:name=".Todo.TodoMainActivity">
         </activity>
         <receiver
-            android:name="com.hello.ourApplication.TodoAlarmReceiver"
+            android:name="com.hello.ourApplication.Todo.TodoAlarmReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

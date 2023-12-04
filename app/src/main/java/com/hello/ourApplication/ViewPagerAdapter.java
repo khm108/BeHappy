@@ -5,6 +5,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.hello.ourApplication.Tutorial.FragmentTutorial1;
+import com.hello.ourApplication.Tutorial.FragmentTutorial2;
+import com.hello.ourApplication.Tutorial.FragmentTutorial3;
+import com.hello.ourApplication.Tutorial.FragmentTutorial4;
+import com.hello.ourApplication.Tutorial.FragmentTutorial5;
+import com.hello.ourApplication.Tutorial.FragmentTutorial6;
+
 public class ViewPagerAdapter extends FragmentStateAdapter {
     public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
