@@ -2,7 +2,7 @@ package com.hello.ourApplication.DTO;
 
 import com.google.gson.annotations.SerializedName;
 
-public class SignIn {
+public class Signup {
     @SerializedName("operation")
     private String operation;
 
@@ -47,7 +47,7 @@ public class SignIn {
         this.userName = userName;
     }
 
-    public SignIn(String inputOperation, String inputId, String inputPw, String inputName) {
+    public Signup(String inputOperation, String inputId, String inputPw, String inputName) {
         this.operation = inputOperation;
         this.userId = inputId;
         this.userPw = inputPw;

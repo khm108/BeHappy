@@ -159,16 +159,6 @@
             </LinearLayout>
         </ScrollView>
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/menu_bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_gravity="bottom|end"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/menu_bar"
-            app:labelVisibilityMode="labeled"
-            app:menu="@menu/menu_bar" />
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView

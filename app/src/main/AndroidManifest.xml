@@ -51,6 +51,9 @@
             android:name=".LoginActivity">
         </activity>
         <activity
+            android:name=".SignUpActivity">
+        </activity>
+        <activity
             android:name=".RecommendActivity">
         </activity>
         <activity

@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     private RetrofitAPI retrofitAPI;
     private Button googleLogin;
     private Button btnLogin;
+    private Button btnsignup;
     private EditText idText;
     private EditText pwText;
     private CheckBox checkBox;
@@ -62,12 +63,22 @@ public class LoginActivity extends AppCompatActivity {
         idText = (EditText)findViewById(R.id.editTextTextPersonName1);
         pwText = (EditText)findViewById(R.id.editTextTextPassword2);
         checkBox = (CheckBox)findViewById(R.id.checkBox);
+        btnsignup = (Button)findViewById(R.id.button);
 
         //자동 로그인을 선택한 유저
         if (!getPreferenceString(autoLoginId).equals("") && !getPreferenceString(autoLoginPw).equals("")) {
             checkBox.setChecked(true);
             checkAutoLogin(getPreferenceString(autoLoginId));
         }
+
+        btnsignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,64 +123,6 @@ public class LoginActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.item_chat: // "채팅하기" 메뉴 클릭 시
-                        Intent intent = new Intent(LoginActivity.this, ChatMainActivity.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.item_recommend: // "추천받기" 메뉴 클릭 시
-                        intent = new Intent(LoginActivity.this, RecommendActivity.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.item_diary: // "일기 모아보기" 메뉴 클릭 시
-                        intent = new Intent(LoginActivity.this, DiaryMainActivity.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.item_test: // "우울증 자가 진단" 메뉴 클릭 시
-                        intent = new Intent(LoginActivity.this, TestActivity.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.item_diary_new: // "일기 작성하기" 메뉴 클릭 시
-                        intent = new Intent(LoginActivity.this, DiaryWriteActivity.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.item_checklist:
-                        intent = new Intent(LoginActivity.this, TodoMainActivity.class);
-                        startActivity(intent);
-                        break;
-                }
-
-                // 네비게이션 드로어 닫기
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return true;
-            }
-        });
-
-        BottomNavigationView bottomNavigationView = findViewById(R.id.menu_bottom_navigation);
-
-        // BottomNavigationView의 아이템 클릭 리스너 설정
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.menu_bar_home:
-                    // 홈 버튼 클릭 시
-                    startActivity(new Intent(this, MainActivity.class));
-                    return true;
-                case R.id.menu_bar_chat:
-                    // 채팅 버튼 클릭 시
-                    startActivity(new Intent(this, ChatMainActivity.class));
-                    return true;
-                case R.id.menu_bar_calendar:
-                    // 캘린더 버튼 클릭 시
-                    startActivity(new Intent(this, TodoMainActivity.class));
-                    return true;
-                default:
-                    return false;
-            }
-        });
     }
 
     public void LoginResponse(){
@@ -200,8 +153,7 @@ public class LoginActivity extends AppCompatActivity {
                     String resultCode = result.getStatusCode();
 
                     String success = "200"; //로그인 성공
-                    String errorId = "300"; //아이디 일치x
-                    String errorPw = "400"; //비밀번호 일치x
+                    String error = "401"; //틀린 아이디 또는 비번
 
 
                     if (resultCode.equals(success)) {
@@ -223,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                         LoginActivity.this.finish();
 
-                    } else if (resultCode.equals(errorId)) {
+                    } else if (resultCode.equals(error)) {
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                         builder.setTitle("알림")
@@ -234,13 +186,6 @@ public class LoginActivity extends AppCompatActivity {
                         AlertDialog alertDialog = builder.create();
                         alertDialog.show();
 
-                    } else if (resultCode.equals(errorPw)) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                        builder.setTitle("알림")
-                                .setMessage("비밀번호가 일치하지 않습니다.")
-                                .setPositiveButton("확인", null)
-                                .create()
-                                .show();
                     } else {
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
@@ -311,21 +256,10 @@ public class LoginActivity extends AppCompatActivity {
     //자동 로그인 유저
     public void checkAutoLogin(String id){
 
-        //Toast.makeText(this, id + "님 환영합니다.", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
 
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:{ // 왼쪽 상단 버튼 눌렀을 때
-                drawerLayout.openDrawer(GravityCompat.START);
-                return true;
-            }
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

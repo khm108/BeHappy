@@ -9,7 +9,7 @@ public class RetrofitClient {
     private static RetrofitClient instance = null;
     private static RetrofitAPI retrofitAPI;
     // 사용하고 있는 서버 BASE 주소
-    private static String baseUrl = "http://211.229.250.40/";
+    private static String baseUrl = "https://u8abzye7ic.execute-api.ap-northeast-2.amazonaws.com/";
 
 
 

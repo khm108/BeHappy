@@ -205,7 +205,7 @@ public class ChatMainActivity extends AppCompatActivity{
         } catch (JSONException e){
             e.printStackTrace();
         }
-        RequestBody body = RequestBody.create(object.toString(), JSON);
+        RequestBody body = RequestBody.create(JSON, object.toString());
         Request request = new Request.Builder()
                 .url("https://api.openai.com/v1/chat/completions")
                 // 이 링크 동작 안할시 https://api.openai.com/v1/completions 사용
