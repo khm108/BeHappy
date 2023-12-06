@@ -1,4 +1,4 @@
-package com.hello.ourApplication.Diary;
+package com.hello.ourApplication;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.hello.ourApplication.Chat.ChatMainActivity;
+import com.hello.ourApplication.Diary.DiaryMainActivity;
+import com.hello.ourApplication.Diary.DiaryWriteActivity;
 import com.hello.ourApplication.MainActivity;
 import com.hello.ourApplication.R;
 import com.hello.ourApplication.RecommendActivity;

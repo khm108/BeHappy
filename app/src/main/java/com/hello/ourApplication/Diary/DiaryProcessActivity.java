@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.hello.ourApplication.CalendarActivity;
 import com.hello.ourApplication.Chat.ChatMainActivity;
 import com.hello.ourApplication.MainActivity;
 import com.hello.ourApplication.R;
@@ -147,7 +148,7 @@ public class DiaryProcessActivity extends AppCompatActivity {
     }
 
     private void startDiarySelectKeywordActivity() {
-        Intent intent = new Intent(DiaryProcessActivity.this, DiarySelectKeywordActivity.class);
+        Intent intent = new Intent(DiaryProcessActivity.this, com.hello.ourApplication.DiarySelectKeywordActivity.class);
         startActivity(intent);
 
         // 현재 액티비티를 종료하여 뒤로 가기 버튼을 눌렀을 때 이전 화면으로 돌아가지 않도록 함

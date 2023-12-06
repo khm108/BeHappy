@@ -21,6 +21,13 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.hello.ourApplication.Chat.ChatMainActivity;
+import com.hello.ourApplication.Diary.DiaryMainActivity;
+import com.hello.ourApplication.Diary.DiaryWriteActivity;
+import com.hello.ourApplication.MainActivity;
+import com.hello.ourApplication.RecommendActivity;
+import com.hello.ourApplication.TestActivity;
+import com.hello.ourApplication.Todo.TodoMainActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

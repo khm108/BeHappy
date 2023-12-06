@@ -23,6 +23,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.navigation.NavigationView;
+import com.hello.ourApplication.CalendarActivity;
 import com.hello.ourApplication.Chat.ChatMainActivity;
 import com.hello.ourApplication.Diary.DiaryMainActivity;
 import com.hello.ourApplication.Diary.DiaryWriteActivity;
@@ -30,6 +31,7 @@ import com.hello.ourApplication.MainActivity;
 import com.hello.ourApplication.R;
 import com.hello.ourApplication.RecommendActivity;
 import com.hello.ourApplication.TestActivity;
+import com.hello.ourApplication.CalendarActivity;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
