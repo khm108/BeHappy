@@ -48,10 +48,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity">
+            android:name=".Registration.LoginActivity">
         </activity>
         <activity
-            android:name=".SignUpActivity">
+            android:name=".Registration.SignUpActivity">
         </activity>
         <activity
             android:name=".RecommendActivity">

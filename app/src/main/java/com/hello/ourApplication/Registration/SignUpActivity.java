@@ -1,38 +1,29 @@
-package com.hello.ourApplication;
+package com.hello.ourApplication.Registration;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.hello.ourApplication.Chat.ChatMainActivity;
-import com.hello.ourApplication.DTO.Login;
-import com.hello.ourApplication.DTO.LoginResponse;
 import com.hello.ourApplication.DTO.Signup;
 import com.hello.ourApplication.DTO.SignupResponse;
-import com.hello.ourApplication.Diary.DiaryMainActivity;
-import com.hello.ourApplication.Diary.DiaryWriteActivity;
+import com.hello.ourApplication.MainActivity;
+import com.hello.ourApplication.R;
 import com.hello.ourApplication.Retrofit.RetrofitAPI;
 import com.hello.ourApplication.Retrofit.RetrofitClient;
-import com.hello.ourApplication.Todo.TodoMainActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;

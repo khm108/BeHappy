@@ -1,6 +1,5 @@
-package com.hello.ourApplication;
+package com.hello.ourApplication.Registration;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -12,7 +11,6 @@ import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -21,16 +19,13 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.hello.ourApplication.Chat.ChatMainActivity;
 import com.hello.ourApplication.DTO.Login;
-import com.hello.ourApplication.Diary.DiaryMainActivity;
-import com.hello.ourApplication.Diary.DiaryWriteActivity;
+import com.hello.ourApplication.MainActivity;
+import com.hello.ourApplication.R;
 import com.hello.ourApplication.Retrofit.RetrofitAPI;
 import com.hello.ourApplication.Retrofit.RetrofitClient;
 import com.hello.ourApplication.DTO.LoginResponse;
-import com.hello.ourApplication.Todo.TodoMainActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,8 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button googleLogin;
     private Button btnLogin;
     private Button btnsignup;
-    private EditText idText;
-    private EditText pwText;
+    public static EditText idText;
+    public static EditText pwText;
     private CheckBox checkBox;
     private String autoLoginId;
     private String autoLoginPw;
@@ -65,11 +60,11 @@ public class LoginActivity extends AppCompatActivity {
         checkBox = (CheckBox)findViewById(R.id.checkBox);
         btnsignup = (Button)findViewById(R.id.button);
 
-        //자동 로그인을 선택한 유저
-        if (!getPreferenceString(autoLoginId).equals("") && !getPreferenceString(autoLoginPw).equals("")) {
-            checkBox.setChecked(true);
-            checkAutoLogin(getPreferenceString(autoLoginId));
-        }
+//        //자동 로그인을 선택한 유저
+//        if (!getPreferenceString(autoLoginId).equals("") && !getPreferenceString(autoLoginPw).equals("")) {
+//            checkBox.setChecked(true);
+//            checkAutoLogin(getPreferenceString(autoLoginId));
+//        }
 
         btnsignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,14 +155,14 @@ public class LoginActivity extends AppCompatActivity {
                         String userID = idText.getText().toString();
                         String userPassword = pwText.getText().toString();
 
-                        //자동 로그인 여부
-                        if (checkBox.isChecked()) {
-                            setPreference(autoLoginId, userID);
-                            setPreference(autoLoginPw, userPassword);
-                        } else {
-                            setPreference(autoLoginId, "");
-                            setPreference(autoLoginPw, "");
-                        }
+//                        //자동 로그인 여부
+//                        if (checkBox.isChecked()) {
+//                            setPreference(autoLoginId, userID);
+//                            setPreference(autoLoginPw, userPassword);
+//                        } else {
+//                            setPreference(autoLoginId, "");
+//                            setPreference(autoLoginPw, "");
+//                        }
 
                         Toast.makeText(LoginActivity.this, userID + "님 환영합니다.", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -212,19 +207,19 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    //데이터를 내부 저장소에 저장하기
-    public void setPreference(String key, String value){
-        SharedPreferences pref = getSharedPreferences(DATA_STORE, MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putString(key, value);
-        editor.apply();
-    }
-
-    //내부 저장소에 저장된 데이터 가져오기
-    public String getPreferenceString(String key) {
-        SharedPreferences pref = getSharedPreferences(DATA_STORE, MODE_PRIVATE);
-        return pref.getString(key, "");
-    }
+//    //데이터를 내부 저장소에 저장하기
+//    public void setPreference(String key, String value){
+//        SharedPreferences pref = getSharedPreferences(DATA_STORE, MODE_PRIVATE);
+//        SharedPreferences.Editor editor = pref.edit();
+//        editor.putString(key, value);
+//        editor.apply();
+//    }
+//
+//    //내부 저장소에 저장된 데이터 가져오기
+//    public String getPreferenceString(String key) {
+//        SharedPreferences pref = getSharedPreferences(DATA_STORE, MODE_PRIVATE);
+//        return pref.getString(key, "");
+//    }
 
 
     //키보드 숨기기
@@ -253,14 +248,14 @@ public class LoginActivity extends AppCompatActivity {
         return super.dispatchTouchEvent(ev);
     }
 
-    //자동 로그인 유저
-    public void checkAutoLogin(String id){
-
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(intent);
-        finish();
-
-    }
+//    //자동 로그인 유저
+//    public void checkAutoLogin(String id){
+//
+//        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//        startActivity(intent);
+//        finish();
+//
+//    }
 
     @Override
     public void onBackPressed() { // 뒤로 가기 했을 때

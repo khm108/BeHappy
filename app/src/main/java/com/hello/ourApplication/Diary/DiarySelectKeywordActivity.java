@@ -1,4 +1,4 @@
-package com.hello.ourApplication;
+package com.hello.ourApplication.Diary;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,12 +15,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.hello.ourApplication.CalendarActivity;
 import com.hello.ourApplication.Chat.ChatMainActivity;
 import com.hello.ourApplication.Diary.DiaryMainActivity;
 import com.hello.ourApplication.Diary.DiaryWriteActivity;
 import com.hello.ourApplication.MainActivity;
 import com.hello.ourApplication.R;
 import com.hello.ourApplication.RecommendActivity;
+import com.hello.ourApplication.Retrofit.RetrofitAPI;
+import com.hello.ourApplication.Retrofit.RetrofitClient;
 import com.hello.ourApplication.TestActivity;
 import com.hello.ourApplication.Todo.TodoMainActivity;
 
@@ -29,12 +32,10 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class DiarySelectKeywordActivity extends AppCompatActivity {
-
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    ImageButton keywordButton1, keywordButton2, keywordButton3, keywordButton4, keywordButton5, keywordButton6, keywordButton7, keywordButton8, keywordButton9;
-    boolean isButton1, isButton2, isButton3, isButton4, isButton5, isButton6, isButton7, isButton8, isButton9 = true;
+    boolean isButton1, isButton2, isButton3, isButton4, isButton5, isButton6, isButton7 = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,36 +63,23 @@ public class DiarySelectKeywordActivity extends AppCompatActivity {
         // TextView에 날짜 표시
         dateTextView.setText(formattedDate);
 
-        keywordButton1 = findViewById(R.id.keyword_button_1);
-        keywordButton2 = findViewById(R.id.keyword_button_2);
-        keywordButton3 = findViewById(R.id.keyword_button_3);
-        keywordButton4 = findViewById(R.id.keyword_button_4);
-        keywordButton5= findViewById(R.id.keyword_button_5);
-        keywordButton6 = findViewById(R.id.keyword_button_6);
-        keywordButton7 = findViewById(R.id.keyword_button_7);
-        keywordButton8 = findViewById(R.id.keyword_button_8);
-        keywordButton9 = findViewById(R.id.keyword_button_9);
+        ImageButton angrykeyword = findViewById(R.id.keyword_button_3);
+        ImageButton disgustkeyword  = findViewById(R.id.keyword_button_4);
+        ImageButton fearkeyword = findViewById(R.id.keyword_button_5);
+        ImageButton happykeyword = findViewById(R.id.keyword_button_6);
+        ImageButton neutralkeyword= findViewById(R.id.keyword_button_7);
+        ImageButton sadkeyword = findViewById(R.id.keyword_button_8);
+        ImageButton suprisekeyword = findViewById(R.id.keyword_button_9);
 
-        // 초기 버튼 설정
-        keywordButton1.setImageResource(R.drawable.keyword_button_1);
-        keywordButton2.setImageResource(R.drawable.keyword_button_1);
-        keywordButton3.setImageResource(R.drawable.keyword_button_1);
-        keywordButton4.setImageResource(R.drawable.keyword_button_1);
-        keywordButton5.setImageResource(R.drawable.keyword_button_1);
-        keywordButton6.setImageResource(R.drawable.keyword_button_1);
-        keywordButton7.setImageResource(R.drawable.keyword_button_1);
-        keywordButton8.setImageResource(R.drawable.keyword_button_1);
-        keywordButton9.setImageResource(R.drawable.keyword_button_1);
-
-        keywordButton1.setOnClickListener(new View.OnClickListener() {
+        angrykeyword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isButton1) {
                     // 버튼 상태가 1일 때 눌렸을 경우
-                    keywordButton1.setImageResource(R.drawable.keyword_button_2);
+                    angrykeyword.setImageResource(R.drawable.btn_knang);
                 } else {
                     // 버튼 상태가 2일 때 눌렸을 경우
-                    keywordButton1.setImageResource(R.drawable.keyword_button_1);
+                    angrykeyword.setImageResource(R.drawable.btn_ksang);
                 }
 
                 // 버튼 상태 변경
@@ -99,15 +87,15 @@ public class DiarySelectKeywordActivity extends AppCompatActivity {
             }
         });
 
-        keywordButton2.setOnClickListener(new View.OnClickListener() {
+        disgustkeyword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isButton2) {
                     // 버튼 상태가 1일 때 눌렸을 경우
-                    keywordButton2.setImageResource(R.drawable.keyword_button_2);
+                    disgustkeyword.setImageResource(R.drawable.btn_kndis);
                 } else {
                     // 버튼 상태가 2일 때 눌렸을 경우
-                    keywordButton2.setImageResource(R.drawable.keyword_button_1);
+                    disgustkeyword.setImageResource(R.drawable.btn_ksdis);
                 }
 
                 // 버튼 상태 변경
@@ -115,15 +103,15 @@ public class DiarySelectKeywordActivity extends AppCompatActivity {
             }
         });
 
-        keywordButton3.setOnClickListener(new View.OnClickListener() {
+        fearkeyword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isButton3) {
                     // 버튼 상태가 1일 때 눌렸을 경우
-                    keywordButton3.setImageResource(R.drawable.keyword_button_2);
+                    fearkeyword.setImageResource(R.drawable.btn_knfear);
                 } else {
                     // 버튼 상태가 2일 때 눌렸을 경우
-                    keywordButton3.setImageResource(R.drawable.keyword_button_1);
+                    fearkeyword.setImageResource(R.drawable.btn_ksfear);
                 }
 
                 // 버튼 상태 변경
@@ -131,15 +119,15 @@ public class DiarySelectKeywordActivity extends AppCompatActivity {
             }
         });
 
-        keywordButton4.setOnClickListener(new View.OnClickListener() {
+        happykeyword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isButton4) {
                     // 버튼 상태가 1일 때 눌렸을 경우
-                    keywordButton4.setImageResource(R.drawable.keyword_button_2);
+                    happykeyword.setImageResource(R.drawable.btn_knhap);
                 } else {
                     // 버튼 상태가 2일 때 눌렸을 경우
-                    keywordButton4.setImageResource(R.drawable.keyword_button_1);
+                    happykeyword.setImageResource(R.drawable.btn_kshap);
                 }
 
                 // 버튼 상태 변경
@@ -147,15 +135,15 @@ public class DiarySelectKeywordActivity extends AppCompatActivity {
             }
         });
 
-        keywordButton5.setOnClickListener(new View.OnClickListener() {
+        neutralkeyword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isButton5) {
                     // 버튼 상태가 1일 때 눌렸을 경우
-                    keywordButton5.setImageResource(R.drawable.keyword_button_2);
+                    neutralkeyword.setImageResource(R.drawable.btn_knneu);
                 } else {
                     // 버튼 상태가 2일 때 눌렸을 경우
-                    keywordButton5.setImageResource(R.drawable.keyword_button_1);
+                    neutralkeyword.setImageResource(R.drawable.btn_ksneu);
                 }
 
                 // 버튼 상태 변경
@@ -163,15 +151,15 @@ public class DiarySelectKeywordActivity extends AppCompatActivity {
             }
         });
 
-        keywordButton6.setOnClickListener(new View.OnClickListener() {
+        sadkeyword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isButton6) {
                     // 버튼 상태가 1일 때 눌렸을 경우
-                    keywordButton6.setImageResource(R.drawable.keyword_button_2);
+                    sadkeyword.setImageResource(R.drawable.btn_knsad);
                 } else {
                     // 버튼 상태가 2일 때 눌렸을 경우
-                    keywordButton6.setImageResource(R.drawable.keyword_button_1);
+                    sadkeyword.setImageResource(R.drawable.btn_kssad);
                 }
 
                 // 버튼 상태 변경
@@ -179,51 +167,19 @@ public class DiarySelectKeywordActivity extends AppCompatActivity {
             }
         });
 
-        keywordButton7.setOnClickListener(new View.OnClickListener() {
+        suprisekeyword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isButton7) {
                     // 버튼 상태가 1일 때 눌렸을 경우
-                    keywordButton7.setImageResource(R.drawable.keyword_button_2);
+                    suprisekeyword.setImageResource(R.drawable.btn_knsup);
                 } else {
                     // 버튼 상태가 2일 때 눌렸을 경우
-                    keywordButton7.setImageResource(R.drawable.keyword_button_1);
+                    suprisekeyword.setImageResource(R.drawable.btn_kssup);
                 }
 
                 // 버튼 상태 변경
                 isButton7 = !isButton7;
-            }
-        });
-
-        keywordButton8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isButton8) {
-                    // 버튼 상태가 1일 때 눌렸을 경우
-                    keywordButton8.setImageResource(R.drawable.keyword_button_2);
-                } else {
-                    // 버튼 상태가 2일 때 눌렸을 경우
-                    keywordButton8.setImageResource(R.drawable.keyword_button_1);
-                }
-
-                // 버튼 상태 변경
-                isButton8 = !isButton8;
-            }
-        });
-
-        keywordButton9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isButton9) {
-                    // 버튼 상태가 1일 때 눌렸을 경우
-                    keywordButton9.setImageResource(R.drawable.keyword_button_2);
-                } else {
-                    // 버튼 상태가 2일 때 눌렸을 경우
-                    keywordButton9.setImageResource(R.drawable.keyword_button_1);
-                }
-
-                // 버튼 상태 변경
-                isButton9 = !isButton9;
             }
         });
 

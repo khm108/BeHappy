@@ -1,4 +1,4 @@
-package com.hello.ourApplication;
+package com.hello.ourApplication.Registration;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,10 @@ import com.google.android.material.navigation.NavigationView;
 import com.hello.ourApplication.Chat.ChatMainActivity;
 import com.hello.ourApplication.Diary.DiaryMainActivity;
 import com.hello.ourApplication.Diary.DiaryWriteActivity;
+import com.hello.ourApplication.MainActivity;
+import com.hello.ourApplication.R;
+import com.hello.ourApplication.RecommendActivity;
+import com.hello.ourApplication.TestActivity;
 import com.hello.ourApplication.Todo.TodoMainActivity;
 
 public class SignInActivity extends AppCompatActivity {

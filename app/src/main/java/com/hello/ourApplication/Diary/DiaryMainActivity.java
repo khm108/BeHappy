@@ -1,13 +1,19 @@
 package com.hello.ourApplication.Diary;
 
+import static com.hello.ourApplication.Registration.LoginActivity.idText;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -18,18 +24,39 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.hello.ourApplication.CalendarActivity;
 import com.hello.ourApplication.Chat.ChatMainActivity;
+import com.hello.ourApplication.DTO.DiaryResponse;
+import com.hello.ourApplication.DTO.ReadDiary;
 import com.hello.ourApplication.MainActivity;
 import com.hello.ourApplication.R;
 import com.hello.ourApplication.RecommendActivity;
+import com.hello.ourApplication.Retrofit.RetrofitAPI;
+import com.hello.ourApplication.Retrofit.RetrofitClient;
 import com.hello.ourApplication.TestActivity;
 import com.hello.ourApplication.Todo.TodoMainActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.util.TypedValue;
+import android.graphics.Typeface;
+
+
 
 public class DiaryMainActivity extends AppCompatActivity {
-
+    private LinearLayout parentLayout;
+    private RetrofitClient retrofitClient;
+    private RetrofitAPI retrofitAPI;
+    public DiaryResponse result;
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -40,6 +67,8 @@ public class DiaryMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diary_main);
 
+        parentLayout = findViewById(R.id.parentLayout); // LinearLayout의 ID입니다.
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -49,7 +78,7 @@ public class DiaryMainActivity extends AppCompatActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
 
-        TextView dateTextView = findViewById(R.id.dateTextView);
+//        TextView dateTextView = findViewById(R.id.dateTextView);
 
         // 현재 날짜를 가져옴
         Calendar calendar = Calendar.getInstance();
@@ -59,9 +88,13 @@ public class DiaryMainActivity extends AppCompatActivity {
         String formattedDate = formatter.format(calendar.getTime());
 
         // TextView에 날짜 표시
-        dateTextView.setText(formattedDate);
+//        dateTextView.setText(formattedDate);
 
         ImageButton writeDiaryButton = findViewById(R.id.write_diary);
+
+        DiaryResponse();
+
+
 
         writeDiaryButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,6 +161,98 @@ public class DiaryMainActivity extends AppCompatActivity {
                     return false;
             }
         });
+    }
+
+    public void DiaryResponse(){
+        String userID = idText.getText().toString().trim();
+
+        // diary에 값 저장하기
+        ReadDiary readDiary = new ReadDiary(userID);
+
+        //retrofit 생성
+        retrofitClient = RetrofitClient.getInstance();
+        retrofitAPI = RetrofitClient.getRetrofitInterface();
+
+        retrofitAPI.getReadDiaryResponse(readDiary).enqueue(new Callback<DiaryResponse>() {
+            @Override
+            public void onResponse(Call<DiaryResponse> call, Response<DiaryResponse> response) {
+
+                Log.d("retrofit", "Data fetch success");
+
+                //통신 성공
+                if (response.isSuccessful() && response.body() != null) {
+
+                    //response.body()를 result에 저장
+                    result = response.body();
+
+                    //받은 코드 저장
+                    String resultCode = result.getStatusCode();
+
+                    String success = "200"; //로그인 성공
+
+
+                    if (resultCode.equals(success)) {
+                        processDiaryEntries();
+                        return;
+
+                    } else {
+                        Toast.makeText(DiaryMainActivity.this, "일기를 불러오는 과정에서 오류가 발생했습니다.", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+
+            //통신 실패
+            @Override
+            public void onFailure(Call<DiaryResponse> call, Throwable t) {
+                Toast.makeText(DiaryMainActivity.this, "일기를 불러오는 과정에서 오류가 발생했습니다.", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void processDiaryEntries() {
+        String bodyString = result.getToken();
+        try {
+            JSONObject bodyObject = new JSONObject(bodyString);
+            JSONArray diariesArray = bodyObject.getJSONArray("diaries");
+
+            // Clear the parentLayout before adding new entries
+            parentLayout.removeAllViews();
+
+            for (int i = 0; i < diariesArray.length(); i++) {
+                JSONObject diary = diariesArray.getJSONObject(i);
+
+                String date = diary.getString("date");
+                String content = diary.getString("content");
+
+                LinearLayout entryLayout = new LinearLayout(this);
+                entryLayout.setLayoutParams(new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT));
+                entryLayout.setOrientation(LinearLayout.VERTICAL);
+
+                TextView dateTextView = new TextView(this);
+                dateTextView.setLayoutParams(new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT));
+                dateTextView.setText(date);
+                dateTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+                dateTextView.setTypeface(null, Typeface.BOLD_ITALIC);
+                entryLayout.addView(dateTextView);
+
+                TextView contentTextView = new TextView(this);
+                contentTextView.setLayoutParams(new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT));
+                contentTextView.setText(content);
+                contentTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+                contentTextView.setTypeface(null, Typeface.NORMAL);
+                entryLayout.addView(contentTextView);
+
+                parentLayout.addView(entryLayout);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public void onToolbarMainButtonClick(View view) { // 오른쪽 상단 홈 버튼

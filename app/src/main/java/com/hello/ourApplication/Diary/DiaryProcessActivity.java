@@ -64,7 +64,7 @@ public class DiaryProcessActivity extends AppCompatActivity {
             public void run() {
                 for (int i = 0; i <= 100; i += 10) {
                     try {
-                        Thread.sleep(500); // 0.5초 대기
+                        Thread.sleep(200); // 0.5초 대기
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -148,7 +148,7 @@ public class DiaryProcessActivity extends AppCompatActivity {
     }
 
     private void startDiarySelectKeywordActivity() {
-        Intent intent = new Intent(DiaryProcessActivity.this, com.hello.ourApplication.DiarySelectKeywordActivity.class);
+        Intent intent = new Intent(DiaryProcessActivity.this, DiarySelectKeywordActivity.class);
         startActivity(intent);
 
         // 현재 액티비티를 종료하여 뒤로 가기 버튼을 눌렀을 때 이전 화면으로 돌아가지 않도록 함
