@@ -1,10 +1,9 @@
-package com.hello.ourApplication;
+package com.hello.ourApplication.Diary;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,87 +11,93 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.hello.ourApplication.Chat.ChatMainActivity;
+import com.hello.ourApplication.MainActivity;
+import com.hello.ourApplication.R;
+import com.hello.ourApplication.RecommendActivity;
+import com.hello.ourApplication.TestActivity;
+import com.hello.ourApplication.Todo.TodoMainActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class DiaryMainActivity extends AppCompatActivity {
+public class DiaryProcessActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    NavController navController;
+    ProgressBar progressBar;
+    TextView progressText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.diary_main);
+        setContentView(R.layout.diary_process);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // 왼쪽 상단 버튼 만들기
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu_slide_icon); //왼쪽 상단 버튼 아이콘 지정
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu_slide_icon);
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.navigation_view);
 
         TextView dateTextView = findViewById(R.id.dateTextView);
 
-        // 현재 날짜를 가져옴
         Calendar calendar = Calendar.getInstance();
-
-        // 날짜를 원하는 형식으로 포맷팅
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd (E)", Locale.getDefault());
         String formattedDate = formatter.format(calendar.getTime());
-
-        // TextView에 날짜 표시
         dateTextView.setText(formattedDate);
 
-        ImageButton writeDiaryButton = findViewById(R.id.write_diary);
+        progressBar = findViewById(R.id.progressBar);
+        progressText = findViewById(R.id.progressText);
 
-        writeDiaryButton.setOnClickListener(new View.OnClickListener() {
+        // 프로그레스 바 업데이트(0에서 100까지 10씩 증가)
+        new Thread(new Runnable() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DiaryMainActivity.this, DiaryWriteActivity.class);
-                startActivity(intent);
+            public void run() {
+                for (int i = 0; i <= 100; i += 10) {
+                    try {
+                        Thread.sleep(500); // 0.5초 대기
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    updateProgressBar(i);
+                }
             }
-        });
+        }).start();
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.item_chat: // "채팅하기" 메뉴 클릭 시
-                        Intent intent = new Intent(DiaryMainActivity.this, ChatMainActivity.class);
+                        Intent intent = new Intent(DiaryProcessActivity.this, ChatMainActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.item_recommend: // "추천받기" 메뉴 클릭 시
-                        intent = new Intent(DiaryMainActivity.this, RecommendActivity.class);
+                        intent = new Intent(DiaryProcessActivity.this, RecommendActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.item_diary: // "일기 모아보기" 메뉴 클릭 시
-                        intent = new Intent(DiaryMainActivity.this, DiaryMainActivity.class);
+                        intent = new Intent(DiaryProcessActivity.this, DiaryMainActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.item_test: // "우울증 자가 진단" 메뉴 클릭 시
-                        intent = new Intent(DiaryMainActivity.this, TestActivity.class);
+                        intent = new Intent(DiaryProcessActivity.this, TestActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.item_diary_new: // "일기 작성하기" 메뉴 클릭 시
-                        intent = new Intent(DiaryMainActivity.this, DiaryWriteActivity.class);
+                        intent = new Intent(DiaryProcessActivity.this, DiaryWriteActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.item_checklist:
-                        intent = new Intent(DiaryMainActivity.this, TodoMainActivity.class);
+                        intent = new Intent(DiaryProcessActivity.this, TodoMainActivity.class);
                         startActivity(intent);
                         break;
                 }
@@ -110,15 +115,15 @@ public class DiaryMainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.menu_bar_home:
                     // 홈 버튼 클릭 시
-                    startActivity(new Intent(DiaryMainActivity.this, MainActivity.class));
+                    startActivity(new Intent(DiaryProcessActivity.this, MainActivity.class));
                     return true;
                 case R.id.menu_bar_chat:
                     // 채팅 버튼 클릭 시
-                    startActivity(new Intent(DiaryMainActivity.this, ChatMainActivity.class));
+                    startActivity(new Intent(DiaryProcessActivity.this, ChatMainActivity.class));
                     return true;
                 case R.id.menu_bar_calendar:
                     // 캘린더 버튼 클릭 시
-                    startActivity(new Intent(DiaryMainActivity.this, CalendarActivity.class));
+                    startActivity(new Intent(DiaryProcessActivity.this, CalendarActivity.class));
                     return true;
                 default:
                     return false;
@@ -126,24 +131,41 @@ public class DiaryMainActivity extends AppCompatActivity {
         });
     }
 
-    public void onToolbarMainButtonClick(View view) { // 오른쪽 상단 홈 버튼
-        Intent intent = new Intent(this, MainActivity.class);
+    private void updateProgressBar(final int progress) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                progressBar.setProgress(progress);
+                progressText.setText(progress + "%");
+
+                // 만약 ProgressBar가 100%로 채워지면 DiarySelectKeywordActivity로 이동
+                if (progress == 100) {
+                    startDiarySelectKeywordActivity();
+                }
+            }
+        });
+    }
+
+    private void startDiarySelectKeywordActivity() {
+        Intent intent = new Intent(DiaryProcessActivity.this, DiarySelectKeywordActivity.class);
         startActivity(intent);
+
+        // 현재 액티비티를 종료하여 뒤로 가기 버튼을 눌렀을 때 이전 화면으로 돌아가지 않도록 함
+        finish();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home: { // 왼쪽 상단 버튼 눌렀을 때
+            case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
-            }
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public void onBackPressed() { // 뒤로 가기 했을 때
+    public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {

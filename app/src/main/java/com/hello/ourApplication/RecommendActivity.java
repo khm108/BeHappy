@@ -13,6 +13,10 @@ import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.hello.ourApplication.Chat.ChatMainActivity;
+import com.hello.ourApplication.Diary.DiaryMainActivity;
+import com.hello.ourApplication.Diary.DiaryWriteActivity;
+import com.hello.ourApplication.Todo.TodoMainActivity;
 
 public class RecommendActivity extends AppCompatActivity {
 

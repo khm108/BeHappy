@@ -1,4 +1,4 @@
-package com.hello.ourApplication;
+package com.hello.ourApplication.Tutorial;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
+
+import com.hello.ourApplication.MainActivity;
+import com.hello.ourApplication.R;
 
 public class FragmentTutorial6 extends Fragment {
     @Override

@@ -1,4 +1,4 @@
-package com.hello.ourApplication;
+package com.hello.ourApplication.Tutorial;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+
+import com.hello.ourApplication.R;
 
 public class FragmentTutorial5 extends Fragment {
     @Override

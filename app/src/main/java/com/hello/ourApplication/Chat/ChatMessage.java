@@ -1,4 +1,4 @@
-package com.hello.ourApplication;
+package com.hello.ourApplication.Chat;
 
 public class ChatMessage {
     public static String SENT_BY_ME = "me";
