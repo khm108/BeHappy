@@ -115,6 +115,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        View headerView = navigationView.getHeaderView(0); // 0은 header의 index입니다.
+
+        TextView userNameTextView = headerView.findViewById(R.id.user_name);
+        userNameTextView.setText("안녕");
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -166,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.menu_bar_calendar:
                     // 캘린더 버튼 클릭 시
-                    startActivity(new Intent(MainActivity.this, TodoMainActivity.class));
+                    startActivity(new Intent(MainActivity.this, CalendarActivity.class));
                     return true;
                 default:
                     return false;

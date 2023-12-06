@@ -36,9 +36,9 @@ public class TodoAlarmAdapter extends ArrayAdapter<TodoAlarm> {
         String name = alarm.getName();
 
         String nameText = String.format("%s", name);
-        alarmName.setText(nameText);
+        alarmName.setText("안녕");
 
-        String timeText = String.format("%04d년 %02d월 %02d일\n%02d시 %02d분", year, month, day, hour, minute);
+        String timeText = String.format("%04d년 %02d월 %02d일\n%02d시 %02d분", year, month+1, day, hour, minute);
         alarmText.setText(timeText);
 
         // 스위치 상태 설정

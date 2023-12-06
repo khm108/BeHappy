@@ -93,7 +93,7 @@ public class TestActivity extends AppCompatActivity {
                     return true;
                 case R.id.menu_bar_calendar:
                     // 캘린더 버튼 클릭 시
-                    startActivity(new Intent(this, TodoMainActivity.class));
+                    startActivity(new Intent(this, CalendarActivity.class));
                     return true;
                 default:
                     return false;

@@ -73,6 +73,9 @@
         <activity
             android:name=".TodoMainActivity">
         </activity>
+        <activity
+            android:name=".CalendarActivity">
+        </activity>
         <receiver
             android:name="com.hello.ourApplication.TodoAlarmReceiver"
             android:exported="true">

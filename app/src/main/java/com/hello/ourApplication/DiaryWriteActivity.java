@@ -113,7 +113,7 @@ public class DiaryWriteActivity extends AppCompatActivity {
                     return true;
                 case R.id.menu_bar_calendar:
                     // 캘린더 버튼 클릭 시
-                    startActivity(new Intent(DiaryWriteActivity.this, TodoMainActivity.class));
+                    startActivity(new Intent(DiaryWriteActivity.this, CalendarActivity.class));
                     return true;
                 default:
                     return false;
