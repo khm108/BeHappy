@@ -1,11 +1,15 @@
 package com.hello.ourApplication.Diary;
 
+import static com.hello.ourApplication.Registration.LoginActivity.idText;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +21,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.hello.ourApplication.CalendarActivity;
 import com.hello.ourApplication.Chat.ChatMainActivity;
+import com.hello.ourApplication.DTO.DiaryResponse;
+import com.hello.ourApplication.DTO.EmotionResponse;
+import com.hello.ourApplication.DTO.ReadDiary;
+import com.hello.ourApplication.DTO.ReadEmotion;
 import com.hello.ourApplication.Diary.DiaryMainActivity;
 import com.hello.ourApplication.Diary.DiaryWriteActivity;
 import com.hello.ourApplication.MainActivity;
@@ -27,15 +35,36 @@ import com.hello.ourApplication.Retrofit.RetrofitClient;
 import com.hello.ourApplication.TestActivity;
 import com.hello.ourApplication.Todo.TodoMainActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class DiarySelectKeywordActivity extends AppCompatActivity {
+    private RetrofitClient retrofitClient;
+    private RetrofitAPI retrofitAPI;
+    public EmotionResponse result;
+    // Initialize variables to hold the most recent emotion's date and emotion
+    public String recentDate = "";
+    public String recentEmotion = "";
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     boolean isButton1, isButton2, isButton3, isButton4, isButton5, isButton6, isButton7 = true;
+    ImageButton angrykeyword;
+    ImageButton disgustkeyword;
+    ImageButton fearkeyword;
+    ImageButton happykeyword;
+    ImageButton neutralkeyword;
+    ImageButton sadkeyword;
+    ImageButton suprisekeyword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,13 +92,15 @@ public class DiarySelectKeywordActivity extends AppCompatActivity {
         // TextView에 날짜 표시
         dateTextView.setText(formattedDate);
 
-        ImageButton angrykeyword = findViewById(R.id.keyword_button_3);
-        ImageButton disgustkeyword  = findViewById(R.id.keyword_button_4);
-        ImageButton fearkeyword = findViewById(R.id.keyword_button_5);
-        ImageButton happykeyword = findViewById(R.id.keyword_button_6);
-        ImageButton neutralkeyword= findViewById(R.id.keyword_button_7);
-        ImageButton sadkeyword = findViewById(R.id.keyword_button_8);
-        ImageButton suprisekeyword = findViewById(R.id.keyword_button_9);
+        angrykeyword = findViewById(R.id.keyword_button_3);
+        disgustkeyword  = findViewById(R.id.keyword_button_4);
+        fearkeyword = findViewById(R.id.keyword_button_5);
+        happykeyword = findViewById(R.id.keyword_button_6);
+        neutralkeyword= findViewById(R.id.keyword_button_7);
+        sadkeyword = findViewById(R.id.keyword_button_8);
+        suprisekeyword = findViewById(R.id.keyword_button_9);
+        
+        EmotionGetResponse();
 
         angrykeyword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,6 +213,8 @@ public class DiarySelectKeywordActivity extends AppCompatActivity {
                 isButton7 = !isButton7;
             }
         });
+        
+        EmotionPostResponse();
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -240,6 +273,90 @@ public class DiarySelectKeywordActivity extends AppCompatActivity {
                     return false;
             }
         });
+    }
+
+    private void EmotionPostResponse() {
+    }
+
+    private void EmotionGetResponse() {
+        String userID = idText.getText().toString().trim();
+
+        // diary에 값 저장하기
+        ReadEmotion readEmotion = new ReadEmotion(userID);
+
+        //retrofit 생성
+        retrofitClient = RetrofitClient.getInstance();
+        retrofitAPI = RetrofitClient.getRetrofitInterface();
+
+        retrofitAPI.getReadEmotionResponse(readEmotion).enqueue(new Callback<EmotionResponse>() {
+            @Override
+            public void onResponse(Call<EmotionResponse> call, Response<EmotionResponse> response) {
+
+                Log.d("retrofit", "Data fetch success");
+
+                //통신 성공
+                if (response.isSuccessful() && response.body() != null) {
+
+                    //response.body()를 result에 저장
+                    result = response.body();
+
+                    //받은 코드 저장
+                    String resultCode = result.getStatusCode();
+
+                    String success = "200"; //로그인 성공
+
+
+                    if (resultCode.equals(success)) {
+                        returnEmotion();
+                        return;
+
+                    } else {
+                        Toast.makeText(DiarySelectKeywordActivity.this, "감정을 분석하는 과정에서 문제가 발생했습니다.", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+
+            //통신 실패
+            @Override
+            public void onFailure(Call<EmotionResponse> call, Throwable t) {
+                Toast.makeText(DiarySelectKeywordActivity.this, "감정을 분석하는 과정에서 문제가 발생했습니다.", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void returnEmotion() {
+        // Your JSON response as a string
+        String bodyString = result.getToken();
+
+        try {
+            // Parse the body string from JSON
+            JSONObject bodyObject = new JSONObject(bodyString);
+            JSONArray emotionsArray = bodyObject.getJSONArray("emotions");
+
+            // Iterate through emotions to find the most recent one
+            for (int i = 0; i < emotionsArray.length(); i++) {
+                JSONObject emotion = emotionsArray.getJSONObject(i);
+                String date = emotion.getString("date");
+                String emotionStr = emotion.optString("emotion", null); // Fetch emotion or null if not present
+
+                // Check if the date is not empty and is more recent than the current recentDate
+                if (!date.isEmpty() && (recentDate.isEmpty() || date.compareTo(recentDate) > 0)) {
+                    recentDate = date;
+                    recentEmotion = emotionStr;
+                }
+            }
+
+            switch (recentEmotion){
+                case "행복":
+                    happykeyword.setImageResource(R.drawable.btn_kshap);
+                    isButton4 = !isButton4;
+                    break;
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
