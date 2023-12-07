@@ -64,7 +64,7 @@ public class DiaryProcessActivity extends AppCompatActivity {
             public void run() {
                 for (int i = 0; i <= 100; i += 10) {
                     try {
-                        Thread.sleep(500); // 0.5초 대기
+                        Thread.sleep(200); // 0.5초 대기
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

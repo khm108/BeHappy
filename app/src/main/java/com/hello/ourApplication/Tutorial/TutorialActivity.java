@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.hello.ourApplication.LoginActivity;
+import com.hello.ourApplication.Registration.LoginActivity;
 import com.hello.ourApplication.R;
 import com.hello.ourApplication.ViewPagerAdapter;
 

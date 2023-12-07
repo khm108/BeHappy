@@ -1,11 +1,15 @@
 package com.hello.ourApplication.Diary;
 
+import static com.hello.ourApplication.Registration.LoginActivity.idText;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,25 +19,52 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.hello.ourApplication.CalendarMainActivity;
+import com.hello.ourApplication.CalendarActivity;
 import com.hello.ourApplication.Chat.ChatMainActivity;
+import com.hello.ourApplication.DTO.DiaryResponse;
+import com.hello.ourApplication.DTO.EmotionResponse;
+import com.hello.ourApplication.DTO.ReadDiary;
+import com.hello.ourApplication.DTO.ReadEmotion;
+import com.hello.ourApplication.Diary.DiaryMainActivity;
+import com.hello.ourApplication.Diary.DiaryWriteActivity;
 import com.hello.ourApplication.MainActivity;
 import com.hello.ourApplication.R;
 import com.hello.ourApplication.RecommendActivity;
+import com.hello.ourApplication.Retrofit.RetrofitAPI;
+import com.hello.ourApplication.Retrofit.RetrofitClient;
 import com.hello.ourApplication.TestActivity;
 import com.hello.ourApplication.Todo.TodoMainActivity;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class DiarySelectKeywordActivity extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+public class DiarySelectKeywordActivity extends AppCompatActivity {
+    private RetrofitClient retrofitClient;
+    private RetrofitAPI retrofitAPI;
+    public EmotionResponse result;
+    // Initialize variables to hold the most recent emotion's date and emotion
+    public String recentDate = "";
+    public String recentEmotion = "";
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    ImageButton keywordButton1, keywordButton2, keywordButton3, keywordButton4, keywordButton5, keywordButton6, keywordButton7, keywordButton8, keywordButton9;
-    boolean isButton1, isButton2, isButton3, isButton4, isButton5, isButton6, isButton7, isButton8, isButton9 = true;
+    boolean isButton1, isButton2, isButton3, isButton4, isButton5, isButton6, isButton7 = true;
+    ImageButton angrykeyword;
+    ImageButton disgustkeyword;
+    ImageButton fearkeyword;
+    ImageButton happykeyword;
+    ImageButton neutralkeyword;
+    ImageButton sadkeyword;
+    ImageButton suprisekeyword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,36 +92,25 @@ public class DiarySelectKeywordActivity extends AppCompatActivity {
         // TextView에 날짜 표시
         dateTextView.setText(formattedDate);
 
-        keywordButton1 = findViewById(R.id.keyword_button_1);
-        keywordButton2 = findViewById(R.id.keyword_button_2);
-        keywordButton3 = findViewById(R.id.keyword_button_3);
-        keywordButton4 = findViewById(R.id.keyword_button_4);
-        keywordButton5= findViewById(R.id.keyword_button_5);
-        keywordButton6 = findViewById(R.id.keyword_button_6);
-        keywordButton7 = findViewById(R.id.keyword_button_7);
-        keywordButton8 = findViewById(R.id.keyword_button_8);
-        keywordButton9 = findViewById(R.id.keyword_button_9);
+        angrykeyword = findViewById(R.id.keyword_button_3);
+        disgustkeyword  = findViewById(R.id.keyword_button_4);
+        fearkeyword = findViewById(R.id.keyword_button_5);
+        happykeyword = findViewById(R.id.keyword_button_6);
+        neutralkeyword= findViewById(R.id.keyword_button_7);
+        sadkeyword = findViewById(R.id.keyword_button_8);
+        suprisekeyword = findViewById(R.id.keyword_button_9);
+        
+        EmotionGetResponse();
 
-        // 초기 버튼 설정
-        keywordButton1.setImageResource(R.drawable.keyword_button_1);
-        keywordButton2.setImageResource(R.drawable.keyword_button_1);
-        keywordButton3.setImageResource(R.drawable.keyword_button_1);
-        keywordButton4.setImageResource(R.drawable.keyword_button_1);
-        keywordButton5.setImageResource(R.drawable.keyword_button_1);
-        keywordButton6.setImageResource(R.drawable.keyword_button_1);
-        keywordButton7.setImageResource(R.drawable.keyword_button_1);
-        keywordButton8.setImageResource(R.drawable.keyword_button_1);
-        keywordButton9.setImageResource(R.drawable.keyword_button_1);
-
-        keywordButton1.setOnClickListener(new View.OnClickListener() {
+        angrykeyword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isButton1) {
                     // 버튼 상태가 1일 때 눌렸을 경우
-                    keywordButton1.setImageResource(R.drawable.keyword_button_2);
+                    angrykeyword.setImageResource(R.drawable.btn_knang);
                 } else {
                     // 버튼 상태가 2일 때 눌렸을 경우
-                    keywordButton1.setImageResource(R.drawable.keyword_button_1);
+                    angrykeyword.setImageResource(R.drawable.btn_ksang);
                 }
 
                 // 버튼 상태 변경
@@ -98,15 +118,15 @@ public class DiarySelectKeywordActivity extends AppCompatActivity {
             }
         });
 
-        keywordButton2.setOnClickListener(new View.OnClickListener() {
+        disgustkeyword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isButton2) {
                     // 버튼 상태가 1일 때 눌렸을 경우
-                    keywordButton2.setImageResource(R.drawable.keyword_button_2);
+                    disgustkeyword.setImageResource(R.drawable.btn_kndis);
                 } else {
                     // 버튼 상태가 2일 때 눌렸을 경우
-                    keywordButton2.setImageResource(R.drawable.keyword_button_1);
+                    disgustkeyword.setImageResource(R.drawable.btn_ksdis);
                 }
 
                 // 버튼 상태 변경
@@ -114,15 +134,15 @@ public class DiarySelectKeywordActivity extends AppCompatActivity {
             }
         });
 
-        keywordButton3.setOnClickListener(new View.OnClickListener() {
+        fearkeyword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isButton3) {
                     // 버튼 상태가 1일 때 눌렸을 경우
-                    keywordButton3.setImageResource(R.drawable.keyword_button_2);
+                    fearkeyword.setImageResource(R.drawable.btn_knfear);
                 } else {
                     // 버튼 상태가 2일 때 눌렸을 경우
-                    keywordButton3.setImageResource(R.drawable.keyword_button_1);
+                    fearkeyword.setImageResource(R.drawable.btn_ksfear);
                 }
 
                 // 버튼 상태 변경
@@ -130,15 +150,15 @@ public class DiarySelectKeywordActivity extends AppCompatActivity {
             }
         });
 
-        keywordButton4.setOnClickListener(new View.OnClickListener() {
+        happykeyword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isButton4) {
                     // 버튼 상태가 1일 때 눌렸을 경우
-                    keywordButton4.setImageResource(R.drawable.keyword_button_2);
+                    happykeyword.setImageResource(R.drawable.btn_knhap);
                 } else {
                     // 버튼 상태가 2일 때 눌렸을 경우
-                    keywordButton4.setImageResource(R.drawable.keyword_button_1);
+                    happykeyword.setImageResource(R.drawable.btn_kshap);
                 }
 
                 // 버튼 상태 변경
@@ -146,15 +166,15 @@ public class DiarySelectKeywordActivity extends AppCompatActivity {
             }
         });
 
-        keywordButton5.setOnClickListener(new View.OnClickListener() {
+        neutralkeyword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isButton5) {
                     // 버튼 상태가 1일 때 눌렸을 경우
-                    keywordButton5.setImageResource(R.drawable.keyword_button_2);
+                    neutralkeyword.setImageResource(R.drawable.btn_knneu);
                 } else {
                     // 버튼 상태가 2일 때 눌렸을 경우
-                    keywordButton5.setImageResource(R.drawable.keyword_button_1);
+                    neutralkeyword.setImageResource(R.drawable.btn_ksneu);
                 }
 
                 // 버튼 상태 변경
@@ -162,15 +182,15 @@ public class DiarySelectKeywordActivity extends AppCompatActivity {
             }
         });
 
-        keywordButton6.setOnClickListener(new View.OnClickListener() {
+        sadkeyword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isButton6) {
                     // 버튼 상태가 1일 때 눌렸을 경우
-                    keywordButton6.setImageResource(R.drawable.keyword_button_2);
+                    sadkeyword.setImageResource(R.drawable.btn_knsad);
                 } else {
                     // 버튼 상태가 2일 때 눌렸을 경우
-                    keywordButton6.setImageResource(R.drawable.keyword_button_1);
+                    sadkeyword.setImageResource(R.drawable.btn_kssad);
                 }
 
                 // 버튼 상태 변경
@@ -178,53 +198,23 @@ public class DiarySelectKeywordActivity extends AppCompatActivity {
             }
         });
 
-        keywordButton7.setOnClickListener(new View.OnClickListener() {
+        suprisekeyword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isButton7) {
                     // 버튼 상태가 1일 때 눌렸을 경우
-                    keywordButton7.setImageResource(R.drawable.keyword_button_2);
+                    suprisekeyword.setImageResource(R.drawable.btn_knsup);
                 } else {
                     // 버튼 상태가 2일 때 눌렸을 경우
-                    keywordButton7.setImageResource(R.drawable.keyword_button_1);
+                    suprisekeyword.setImageResource(R.drawable.btn_kssup);
                 }
 
                 // 버튼 상태 변경
                 isButton7 = !isButton7;
             }
         });
-
-        keywordButton8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isButton8) {
-                    // 버튼 상태가 1일 때 눌렸을 경우
-                    keywordButton8.setImageResource(R.drawable.keyword_button_2);
-                } else {
-                    // 버튼 상태가 2일 때 눌렸을 경우
-                    keywordButton8.setImageResource(R.drawable.keyword_button_1);
-                }
-
-                // 버튼 상태 변경
-                isButton8 = !isButton8;
-            }
-        });
-
-        keywordButton9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isButton9) {
-                    // 버튼 상태가 1일 때 눌렸을 경우
-                    keywordButton9.setImageResource(R.drawable.keyword_button_2);
-                } else {
-                    // 버튼 상태가 2일 때 눌렸을 경우
-                    keywordButton9.setImageResource(R.drawable.keyword_button_1);
-                }
-
-                // 버튼 상태 변경
-                isButton9 = !isButton9;
-            }
-        });
+        
+        EmotionPostResponse();
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -277,12 +267,96 @@ public class DiarySelectKeywordActivity extends AppCompatActivity {
                     return true;
                 case R.id.menu_bar_calendar:
                     // 캘린더 버튼 클릭 시
-                    startActivity(new Intent(DiarySelectKeywordActivity.this, CalendarMainActivity.class));
+                    startActivity(new Intent(DiarySelectKeywordActivity.this, CalendarActivity.class));
                     return true;
                 default:
                     return false;
             }
         });
+    }
+
+    private void EmotionPostResponse() {
+    }
+
+    private void EmotionGetResponse() {
+        String userID = idText.getText().toString().trim();
+
+        // diary에 값 저장하기
+        ReadEmotion readEmotion = new ReadEmotion(userID);
+
+        //retrofit 생성
+        retrofitClient = RetrofitClient.getInstance();
+        retrofitAPI = RetrofitClient.getRetrofitInterface();
+
+        retrofitAPI.getReadEmotionResponse(readEmotion).enqueue(new Callback<EmotionResponse>() {
+            @Override
+            public void onResponse(Call<EmotionResponse> call, Response<EmotionResponse> response) {
+
+                Log.d("retrofit", "Data fetch success");
+
+                //통신 성공
+                if (response.isSuccessful() && response.body() != null) {
+
+                    //response.body()를 result에 저장
+                    result = response.body();
+
+                    //받은 코드 저장
+                    String resultCode = result.getStatusCode();
+
+                    String success = "200"; //로그인 성공
+
+
+                    if (resultCode.equals(success)) {
+                        returnEmotion();
+                        return;
+
+                    } else {
+                        Toast.makeText(DiarySelectKeywordActivity.this, "감정을 분석하는 과정에서 문제가 발생했습니다.", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+
+            //통신 실패
+            @Override
+            public void onFailure(Call<EmotionResponse> call, Throwable t) {
+                Toast.makeText(DiarySelectKeywordActivity.this, "감정을 분석하는 과정에서 문제가 발생했습니다.", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void returnEmotion() {
+        // Your JSON response as a string
+        String bodyString = result.getToken();
+
+        try {
+            // Parse the body string from JSON
+            JSONObject bodyObject = new JSONObject(bodyString);
+            JSONArray emotionsArray = bodyObject.getJSONArray("emotions");
+
+            // Iterate through emotions to find the most recent one
+            for (int i = 0; i < emotionsArray.length(); i++) {
+                JSONObject emotion = emotionsArray.getJSONObject(i);
+                String date = emotion.getString("date");
+                String emotionStr = emotion.optString("emotion", null); // Fetch emotion or null if not present
+
+                // Check if the date is not empty and is more recent than the current recentDate
+                if (!date.isEmpty() && (recentDate.isEmpty() || date.compareTo(recentDate) > 0)) {
+                    recentDate = date;
+                    recentEmotion = emotionStr;
+                }
+            }
+
+            switch (recentEmotion){
+                case "행복":
+                    happykeyword.setImageResource(R.drawable.btn_kshap);
+                    isButton4 = !isButton4;
+                    break;
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override

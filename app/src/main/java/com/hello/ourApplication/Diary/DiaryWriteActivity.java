@@ -1,13 +1,18 @@
 package com.hello.ourApplication.Diary;
 
+import static com.hello.ourApplication.Registration.LoginActivity.idText;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -15,11 +20,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.hello.ourApplication.CalendarMainActivity;
+import com.hello.ourApplication.CalendarActivity;
 import com.hello.ourApplication.Chat.ChatMainActivity;
+import com.hello.ourApplication.DTO.DiaryResponse;
+import com.hello.ourApplication.DTO.LoginResponse;
+import com.hello.ourApplication.DTO.WriteDiary;
 import com.hello.ourApplication.MainActivity;
 import com.hello.ourApplication.R;
 import com.hello.ourApplication.RecommendActivity;
+import com.hello.ourApplication.Registration.LoginActivity;
+import com.hello.ourApplication.Retrofit.RetrofitAPI;
+import com.hello.ourApplication.Retrofit.RetrofitClient;
 import com.hello.ourApplication.TestActivity;
 import com.hello.ourApplication.Todo.TodoMainActivity;
 
@@ -27,11 +38,18 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class DiaryWriteActivity extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+public class DiaryWriteActivity extends AppCompatActivity {
+    private RetrofitClient retrofitClient;
+    private RetrofitAPI retrofitAPI;
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
+
+    TextView diaryContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +79,30 @@ public class DiaryWriteActivity extends AppCompatActivity {
 
         ImageButton goToPhotoButton = findViewById(R.id.diary_content_complete);
 
+        // 일기 내용 작성
+        diaryContent = findViewById(R.id.diary_content);
+
         goToPhotoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DiaryWriteActivity.this, DiaryPhotoActivity.class);
-                startActivity(intent);
+                String content = diaryContent.getText().toString().trim();
+
+                // Check if diary content is empty
+                if (content.isEmpty()) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(DiaryWriteActivity.this);
+                    builder.setTitle("알림")
+                            .setMessage("일기 내용을 작성해주세요")
+                            .setPositiveButton("확인", null)
+                            .create()
+                            .show();
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                } else {
+                    DiaryResponse();
+//                    // If diary content is not empty, proceed to DiaryPhotoActivity
+//                    Intent intent = new Intent(DiaryWriteActivity.this, DiaryPhotoActivity.class);
+//                    startActivity(intent);
+                }
             }
         });
 
@@ -120,10 +157,73 @@ public class DiaryWriteActivity extends AppCompatActivity {
                     return true;
                 case R.id.menu_bar_calendar:
                     // 캘린더 버튼 클릭 시
-                    startActivity(new Intent(DiaryWriteActivity.this, CalendarMainActivity.class));
+                    startActivity(new Intent(DiaryWriteActivity.this, CalendarActivity.class));
                     return true;
                 default:
                     return false;
+            }
+        });
+    }
+
+    public void DiaryResponse(){
+        String userID = idText.getText().toString().trim();
+        String content = diaryContent.getText().toString().trim();
+
+        // Diary에 사용자가 입력한 content 저장
+        WriteDiary writeDiary = new WriteDiary(userID, content);
+
+        //retrofit 생성
+        retrofitClient = RetrofitClient.getInstance();
+        retrofitAPI = RetrofitClient.getRetrofitInterface();
+
+        //loginRequest에 저장된 데이터와 함께 init에서 정의한 getLoginResponse 함수를 실행한 후 응답을 받음
+        retrofitAPI.getWriteDiaryResponse(writeDiary).enqueue(new Callback<DiaryResponse>() {
+            @Override
+            public void onResponse(Call<DiaryResponse> call, Response<DiaryResponse> response) {
+
+                Log.d("retrofit", "Data fetch success");
+
+                //통신 성공
+                if (response.isSuccessful() && response.body() != null) {
+
+                    //response.body()를 result에 저장
+                    DiaryResponse result = response.body();
+
+                    //받은 코드 저장
+                    String resultCode = result.getStatusCode();
+
+                    String success = "200"; //로그인 성공
+
+
+                    if (resultCode.equals(success)) {
+
+                        Toast.makeText(DiaryWriteActivity.this, "일기가 작성 완료되었습니다.", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(DiaryWriteActivity.this, DiaryPhotoActivity.class);
+                        intent.putExtra("userId", userID);
+                        startActivity(intent);
+                        DiaryWriteActivity.this.finish();
+
+                    } else {
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(DiaryWriteActivity.this);
+                        builder.setTitle("알림")
+                                .setMessage("예기치 못한 오류가 발생하였습니다.")
+                                .setPositiveButton("확인", null)
+                                .create()
+                                .show();
+                    }
+                }
+            }
+
+            //통신 실패
+            @Override
+            public void onFailure(Call<DiaryResponse> call, Throwable t) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(DiaryWriteActivity.this);
+                builder.setTitle("알림")
+                        .setMessage("예기치 못한 오류가 발생하였습니다.")
+                        .setPositiveButton("확인", null)
+                        .create()
+                        .show();
             }
         });
     }

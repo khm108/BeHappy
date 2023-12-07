@@ -132,113 +132,123 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/parentLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="50dp"
                     android:layout_marginRight="50dp"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/dateTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="20dp"
-                        android:text="20XX.XX.XX. (월) 17:00"
-                        android:textSize="15sp"
-                        android:textStyle="bold|italic" />
-
-                    <TextView
-                        android:id="@+id/diary_recent_1_emotion"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        android:text="분석된 감정: 즐거움, 행복"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/diary_recent_1_content"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        android:text="오늘은 친구와 함께 한강 공원에 갔다.\n돗자리를 펴놓고 집에서 싸온 도시락을 친구와 함께\n..."
-                        android:textSize="13sp"
-                        android:textStyle="normal" />
-
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
-                    android:orientation="vertical">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginLeft="50dp"-->
+<!--                    android:layout_marginRight="50dp"-->
+<!--                    android:orientation="vertical">-->
 
-                    <TextView
-                        android:id="@+id/dateTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="20dp"
-                        android:text="20XX.XX.XX. (월) 17:00"
-                        android:textSize="15sp"
-                        android:textStyle="bold|italic" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/dateTextView1"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginTop="20dp"-->
+<!--                        android:text="20XX.XX.XX. (월) 17:00"-->
+<!--                        android:textSize="15sp"-->
+<!--                        android:textStyle="bold|italic" />-->
 
-                    <TextView
-                        android:id="@+id/diary_recent_2_emotion"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        android:text="분석된 감정: 즐거움, 행복"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/diary_recent_1_emotion"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:text="분석된 감정: 즐거움, 행복"-->
+<!--                        android:textSize="15sp"-->
+<!--                        android:textStyle="bold" />-->
 
-                    <TextView
-                        android:id="@+id/diary_recent_2_content"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        android:text="오늘은 친구와 함께 한강 공원에 갔다.\n돗자리를 펴놓고 집에서 싸온 도시락을 친구와 함께\n..."
-                        android:textSize="13sp"
-                        android:textStyle="normal" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/diary_recent_1_content"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:text="오늘은 친구와 함께 한강 공원에 갔다.\n돗자리를 펴놓고 집에서 싸온 도시락을 친구와 함께\n..."-->
+<!--                        android:textSize="13sp"-->
+<!--                        android:textStyle="normal" />-->
 
-                </LinearLayout>
+<!--                </LinearLayout>-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
-                    android:layout_marginBottom="150dp"
-                    android:orientation="vertical">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginLeft="50dp"-->
+<!--                    android:layout_marginRight="50dp"-->
+<!--                    android:orientation="vertical">-->
 
-                    <TextView
-                        android:id="@+id/dateTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="20dp"
-                        android:text="20XX.XX.XX. (월) 17:00"
-                        android:textSize="15sp"
-                        android:textStyle="bold|italic" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/dateTextView2"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginTop="20dp"-->
+<!--                        android:text="20XX.XX.XX. (월) 17:00"-->
+<!--                        android:textSize="15sp"-->
+<!--                        android:textStyle="bold|italic" />-->
 
-                    <TextView
-                        android:id="@+id/diary_recent_3_emotion"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        android:text="분석된 감정: 즐거움, 행복"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/diary_recent_2_emotion"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:text="분석된 감정: 즐거움, 행복"-->
+<!--                        android:textSize="15sp"-->
+<!--                        android:textStyle="bold" />-->
 
-                    <TextView
-                        android:id="@+id/diary_recent_3_content"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        android:text="오늘은 친구와 함께 한강 공원에 갔다.\n돗자리를 펴놓고 집에서 싸온 도시락을 친구와 함께\n..."
-                        android:textSize="13sp"
-                        android:textStyle="normal" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/diary_recent_2_content"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:text="오늘은 친구와 함께 한강 공원에 갔다.\n돗자리를 펴놓고 집에서 싸온 도시락을 친구와 함께\n..."-->
+<!--                        android:textSize="13sp"-->
+<!--                        android:textStyle="normal" />-->
 
-                </LinearLayout>
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginLeft="50dp"-->
+<!--                    android:layout_marginRight="50dp"-->
+<!--                    android:layout_marginBottom="150dp"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/dateTextView3"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginTop="20dp"-->
+<!--                        android:text="20XX.XX.XX. (월) 17:00"-->
+<!--                        android:textSize="15sp"-->
+<!--                        android:textStyle="bold|italic" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/diary_recent_3_emotion"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:text="분석된 감정: 즐거움, 행복"-->
+<!--                        android:textSize="15sp"-->
+<!--                        android:textStyle="bold" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/diary_recent_3_content"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:text="오늘은 친구와 함께 한강 공원에 갔다.\n돗자리를 펴놓고 집에서 싸온 도시락을 친구와 함께\n..."-->
+<!--                        android:textSize="13sp"-->
+<!--                        android:textStyle="normal" />-->
+
+<!--                </LinearLayout>-->
             </LinearLayout>
         </ScrollView>
 
