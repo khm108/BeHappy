@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.hello.ourApplication.CalendarMainActivity;
 import com.hello.ourApplication.Chat.ChatMainActivity;
 import com.hello.ourApplication.Diary.DiaryMainActivity;
 import com.hello.ourApplication.Diary.DiaryWriteActivity;
@@ -75,6 +76,10 @@ public class SignInActivity extends AppCompatActivity {
                         break;
                     case R.id.item_checklist:
                         intent = new Intent(SignInActivity.this, TodoMainActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.item_calendar:
+                        intent = new Intent(SignInActivity.this, CalendarMainActivity.class);
                         startActivity(intent);
                         break;
                 }

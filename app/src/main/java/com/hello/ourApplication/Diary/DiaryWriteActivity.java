@@ -134,6 +134,10 @@ public class DiaryWriteActivity extends AppCompatActivity {
                         intent = new Intent(DiaryWriteActivity.this, TodoMainActivity.class);
                         startActivity(intent);
                         break;
+                    case R.id.item_calendar:
+                        intent = new Intent(DiaryWriteActivity.this, CalendarMainActivity.class);
+                        startActivity(intent);
+                        break;
                 }
 
                 // 네비게이션 드로어 닫기

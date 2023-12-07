@@ -244,6 +244,10 @@ public class DiarySelectKeywordActivity extends AppCompatActivity {
                         intent = new Intent(DiarySelectKeywordActivity.this, TodoMainActivity.class);
                         startActivity(intent);
                         break;
+                    case R.id.item_calendar:
+                        intent = new Intent(DiarySelectKeywordActivity.this, CalendarMainActivity.class);
+                        startActivity(intent);
+                        break;
                 }
 
                 // 네비게이션 드로어 닫기
