@@ -21,6 +21,7 @@ import com.hello.ourApplication.Chat.ChatMainActivity;
 import com.hello.ourApplication.Diary.DiaryMainActivity;
 import com.hello.ourApplication.Diary.DiaryWriteActivity;
 import com.hello.ourApplication.Todo.TodoMainActivity;
+import com.hello.ourApplication.CalendarMainActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -170,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.menu_bar_calendar:
                     // 캘린더 버튼 클릭 시
-                    startActivity(new Intent(MainActivity.this, CalendarActivity.class));
+                    startActivity(new Intent(MainActivity.this, CalendarMainActivity.class));
                     return true;
                 default:
                     return false;

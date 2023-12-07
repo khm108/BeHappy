@@ -16,7 +16,7 @@ import androidx.navigation.NavController;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.hello.ourApplication.CalendarActivity;
+import com.hello.ourApplication.CalendarMainActivity;
 import com.hello.ourApplication.Chat.ChatMainActivity;
 import com.hello.ourApplication.MainActivity;
 import com.hello.ourApplication.R;
@@ -122,7 +122,7 @@ public class DiaryMainActivity extends AppCompatActivity {
                     return true;
                 case R.id.menu_bar_calendar:
                     // 캘린더 버튼 클릭 시
-                    startActivity(new Intent(DiaryMainActivity.this, CalendarActivity.class));
+                    startActivity(new Intent(DiaryMainActivity.this, CalendarMainActivity.class));
                     return true;
                 default:
                     return false;

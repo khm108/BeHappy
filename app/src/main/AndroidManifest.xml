@@ -78,7 +78,7 @@
             android:name=".Todo.TodoMainActivity">
         </activity>
         <activity
-            android:name=".CalendarActivity">
+            android:name=".CalendarMainActivity">
         </activity>
         <receiver
             android:name="com.hello.ourApplication.Todo.TodoAlarmReceiver"

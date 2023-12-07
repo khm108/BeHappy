@@ -1,4 +1,4 @@
-package com.hello.ourApplication;
+package com.hello.ourApplication.Diary;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,9 +15,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.hello.ourApplication.CalendarMainActivity;
 import com.hello.ourApplication.Chat.ChatMainActivity;
-import com.hello.ourApplication.Diary.DiaryMainActivity;
-import com.hello.ourApplication.Diary.DiaryWriteActivity;
 import com.hello.ourApplication.MainActivity;
 import com.hello.ourApplication.R;
 import com.hello.ourApplication.RecommendActivity;
@@ -278,7 +277,7 @@ public class DiarySelectKeywordActivity extends AppCompatActivity {
                     return true;
                 case R.id.menu_bar_calendar:
                     // 캘린더 버튼 클릭 시
-                    startActivity(new Intent(DiarySelectKeywordActivity.this, CalendarActivity.class));
+                    startActivity(new Intent(DiarySelectKeywordActivity.this, CalendarMainActivity.class));
                     return true;
                 default:
                     return false;

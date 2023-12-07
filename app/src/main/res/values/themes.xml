@@ -39,4 +39,17 @@
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">false</item>
     </style>
+
+    <style name="CalendarViewStyle" parent="@android:style/Widget.CalendarView">
+        <item name="android:focusedMonthDateColor">#8EBB6A</item>
+        <item name="android:unfocusedMonthDateColor">#8EBB6A</item>
+        <item name="android:datePickerMode">calendar</item>
+        <item name="android:selectedWeekBackgroundColor">#00FFFFFF</item>
+        <item name="android:weekNumberColor">#00FFFFFF</item>
+    </style>
+    <style name="ButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">#93AA64</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
 </resources>
