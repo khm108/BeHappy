@@ -20,7 +20,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.hello.ourApplication.CalendarActivity;
+import com.hello.ourApplication.CalendarMainActivity;
 import com.hello.ourApplication.Chat.ChatMainActivity;
 import com.hello.ourApplication.DTO.DiaryResponse;
 import com.hello.ourApplication.DTO.LoginResponse;
@@ -157,7 +157,7 @@ public class DiaryWriteActivity extends AppCompatActivity {
                     return true;
                 case R.id.menu_bar_calendar:
                     // 캘린더 버튼 클릭 시
-                    startActivity(new Intent(DiaryWriteActivity.this, CalendarActivity.class));
+                    startActivity(new Intent(DiaryWriteActivity.this, CalendarMainActivity.class));
                     return true;
                 default:
                     return false;

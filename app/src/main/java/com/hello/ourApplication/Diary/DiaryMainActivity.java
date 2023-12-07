@@ -67,7 +67,7 @@ public class DiaryMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diary_main);
 
-        parentLayout = findViewById(R.id.parentLayout); // LinearLayout의 ID입니다.
+        parentLayout = findViewById(R.id.parentLayout);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

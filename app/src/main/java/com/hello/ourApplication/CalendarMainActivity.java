@@ -194,13 +194,11 @@ public class CalendarMainActivity extends AppCompatActivity {
 
     }
 
-    public void checkDay(int cYear, int cMonth, int cDay)
-    {
+    public void checkDay(int cYear, int cMonth, int cDay) {
         readDay = "" + cYear + "-" + (cMonth + 1) + "" + "-" + cDay + ".txt";
         FileInputStream fis;
 
-        try
-        {
+        try {
             fis = openFileInput(readDay);
 
             byte[] fileData = new byte[fis.available()];
@@ -217,11 +215,9 @@ public class CalendarMainActivity extends AppCompatActivity {
             cha_Btn.setVisibility(View.VISIBLE);
             del_Btn.setVisibility(View.VISIBLE);
 
-            cha_Btn.setOnClickListener(new View.OnClickListener()
-            {
+            cha_Btn.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view)
-                {
+                public void onClick(View view) {
                     contextEditText.setVisibility(View.VISIBLE);
                     textView2.setVisibility(View.INVISIBLE);
                     contextEditText.setText(str);
@@ -231,13 +227,10 @@ public class CalendarMainActivity extends AppCompatActivity {
                     del_Btn.setVisibility(View.INVISIBLE);
                     textView2.setText(contextEditText.getText());
                 }
-
             });
-            del_Btn.setOnClickListener(new View.OnClickListener()
-            {
+            del_Btn.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view)
-                {
+                public void onClick(View view) {
                     textView2.setVisibility(View.INVISIBLE);
                     contextEditText.setText("");
                     contextEditText.setVisibility(View.VISIBLE);
@@ -245,10 +238,10 @@ public class CalendarMainActivity extends AppCompatActivity {
                     cha_Btn.setVisibility(View.INVISIBLE);
                     del_Btn.setVisibility(View.INVISIBLE);
                     removeDiary(readDay);
+                    checkDay(cYear, cMonth, cDay); // 수정된 부분
                 }
             });
-            if (textView2.getText() == null)
-            {
+            if (textView2.getText() == null || textView2.getText().toString().isEmpty()) {
                 textView2.setVisibility(View.INVISIBLE);
                 diaryTextView.setVisibility(View.VISIBLE);
                 save_Btn.setVisibility(View.VISIBLE);
@@ -257,9 +250,7 @@ public class CalendarMainActivity extends AppCompatActivity {
                 contextEditText.setVisibility(View.VISIBLE);
             }
 
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -295,19 +286,10 @@ public class CalendarMainActivity extends AppCompatActivity {
     }
 
     @SuppressLint("WrongConstant")
-    public void removeDiary(String readDay)
-    {
-        FileOutputStream fos;
-        try
-        {
-            fos = openFileOutput(readDay, MODE_NO_LOCALIZED_COLLATORS);
-            String content = "";
-            fos.write((content).getBytes());
-            fos.close();
-
-        }
-        catch (Exception e)
-        {
+    public void removeDiary(String readDay) {
+        try {
+            deleteFile(readDay);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
