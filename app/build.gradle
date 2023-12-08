@@ -6,9 +6,6 @@ android {
     namespace 'com.hello.ourApplication'
     compileSdk 33
 
-    Properties properties = new Properties()
-    properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
     defaultConfig {
         applicationId "com.hello.ourApplication"
         minSdk 23
@@ -16,14 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        // api key
-        buildConfigField ("String", "GPT_KEY", properties['gpt_key'])
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildFeatures {
-        buildConfig = true
     }
 
     buildTypes {
@@ -39,6 +29,9 @@ android {
 }
 
 dependencies {
+    implementation project(':unityLibrary')
+    implementation fileTree(dir: project(':unityLibrary').getProjectDir().toString() + ('\\libs'), include: ['*.jar'])
+
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -47,11 +40,4 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation "androidx.navigation:navigation-fragment:2.3.5"
     implementation "androidx.navigation:navigation-ui:2.3.5"
-    //로그를 남기기 위한 라이브러리
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
-    //retrofit 통신을 위한 라이브러리
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
-    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
-    implementation 'com.google.code.gson:gson:2.8.5'
 }

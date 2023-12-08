@@ -15,13 +15,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.hello.ourApplication.Chat.ChatMainActivity;
-import com.hello.ourApplication.Diary.DiaryMainActivity;
-import com.hello.ourApplication.Diary.DiaryWriteActivity;
-import com.hello.ourApplication.Todo.TodoMainActivity;
-import com.hello.ourApplication.CalendarMainActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -29,6 +23,8 @@ import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {
+
+
 
     Toolbar toolbar;
     DrawerLayout drawerLayout;
@@ -39,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -74,9 +71,10 @@ public class MainActivity extends AppCompatActivity {
         completedTasksTextView.setText(newText2);
 
         ImageButton buttonDiary = findViewById(R.id.mainButton_diary); // 메인화면 버튼: 다이어리
-        ImageButton buttoncalendar = findViewById(R.id.mainButton_calendar); // 메인화면 버튼: 달력
         ImageButton buttonRecommend = findViewById(R.id.mainButton_recommend); // 메인화면 버튼: 포켓가든
         ImageButton buttonChat = findViewById(R.id.mainButton_chat); // 메인화면 버튼: 채팅
+        ImageButton buttoncalendar = findViewById(R.id.mainButton_calendar); // 메인화면 버튼: 달력
+
 
         // 다이어리 버튼 클릭시
         buttonDiary.setOnClickListener(new View.OnClickListener() {
@@ -91,13 +89,13 @@ public class MainActivity extends AppCompatActivity {
         buttoncalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 일단 Todo로 해놓았어요
-                Intent intent = new Intent(MainActivity.this, TodoMainActivity.class);
+                // 달력 아직 미완이라 일기로 연결
+                Intent intent = new Intent(MainActivity.this, DiaryMainActivity.class);
                 startActivity(intent);
             }
         });
 
-        // 추천 버튼 클릭시
+         //추천 버튼 클릭시
         buttonRecommend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,21 +113,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        View headerView = navigationView.getHeaderView(0); // 0은 header의 index입니다.
-
-        TextView userNameTextView = headerView.findViewById(R.id.user_name);
-        userNameTextView.setText("안녕");
-
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.item_chat: // "채팅하기" 메뉴 클릭 시
-                        Intent intent = new Intent(MainActivity.this, ChatMainActivity.class);
-                        startActivity(intent);
-                        break;
                     case R.id.item_recommend: // "추천받기" 메뉴 클릭 시
-                        intent = new Intent(MainActivity.this, RecommendActivity.class);
+                        Intent intent = new Intent(MainActivity.this, RecommendActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.item_diary: // "일기 모아보기" 메뉴 클릭 시
@@ -148,10 +137,11 @@ public class MainActivity extends AppCompatActivity {
                         intent = new Intent(MainActivity.this, TodoMainActivity.class);
                         startActivity(intent);
                         break;
-                    case R.id.item_calendar:
-                        intent = new Intent(MainActivity.this, CalendarMainActivity.class);
+                    case R.id.item_pocket_garden:
+                        intent = new Intent(MainActivity.this, getMainUnityActivityClass());
                         startActivity(intent);
                         break;
+
                 }
 
                 // 네비게이션 드로어 닫기
@@ -160,31 +150,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.menu_bottom_navigation);
-
-        // BottomNavigationView의 아이템 클릭 리스너 설정
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.menu_bar_home:
-                    // 홈 버튼 클릭 시
-                    startActivity(new Intent(MainActivity.this, MainActivity.class));
-                    return true;
-                case R.id.menu_bar_chat:
-                    // 채팅 버튼 클릭 시
-                    startActivity(new Intent(MainActivity.this, ChatMainActivity.class));
-                    return true;
-                case R.id.menu_bar_calendar:
-                    // 캘린더 버튼 클릭 시
-                    startActivity(new Intent(MainActivity.this, CalendarMainActivity.class));
-                    return true;
-                default:
-                    return false;
-            }
-        });
 
 
     }
 
+
+    private Class getMainUnityActivityClass() {
+        return findClassUsingReflection("com.hello.ourApplication.MainUnityActivity");
+    }
+
+    private Class findClassUsingReflection(String className) {
+        try {
+            return Class.forName(className);
+        } catch (final ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.navi_menu, menu);

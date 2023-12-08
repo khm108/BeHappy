@@ -23,7 +23,6 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
             <LinearLayout
@@ -40,8 +39,6 @@
                     android:theme="@style/Theme.NavigationDrawer">
 
                     <ImageButton
-                        android:id="@+id/toolbar_main"
-                        android:onClick="onToolbarMainButtonClick"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="right"
@@ -72,6 +69,7 @@
                         android:layout_marginLeft="70dp"
                         android:background="#00FFFFFF"
                         android:src="@drawable/todo_plus" />
+
 
                     <TextView
                         android:layout_width="match_parent"
@@ -129,7 +127,7 @@
                     android:visibility="gone">
 
                     <EditText
-                        android:id="@+id/alarmName"
+                        android:id="@+id/nameEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -138,22 +136,13 @@
                         android:singleLine="true" />
 
                     <EditText
-                        android:id="@+id/alarmMemo"
+                        android:id="@+id/descriptionEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:hint="Description"
                         android:singleLine="true" />
-
-                    <DatePicker
-                        android:id="@+id/datePicker"
-                        style="@style/MyTimePickerStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:datePickerMode="calendar"/>
 
                     <TimePicker
                         android:id="@+id/timePicker"

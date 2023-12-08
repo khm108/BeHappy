@@ -2,13 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" >
 
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -17,12 +10,18 @@
         android:label=""
         android:supportsRtl="true"
         android:theme="@style/Theme.OurApplication"
-        android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustPan"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false">
+
+        </activity>
+        <activity
+            android:name=".MainUnityActivity"
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -32,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Chat.ChatMainActivity"
+            android:name=".ChatMainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,7 +39,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Tutorial.TutorialActivity"
+            android:name=".TutorialActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,10 +47,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Registration.LoginActivity">
-        </activity>
-        <activity
-            android:name=".Registration.SignUpActivity">
+            android:name=".SignInActivity">
         </activity>
         <activity
             android:name=".RecommendActivity">
@@ -60,28 +56,26 @@
             android:name=".TestActivity">
         </activity>
         <activity
-            android:name=".Diary.DiaryMainActivity">
+            android:name=".DiaryMainActivity">
         </activity>
         <activity
-            android:name=".Diary.DiaryWriteActivity">
+            android:name=".DiaryWriteActivity">
         </activity>
         <activity
-            android:name=".Diary.DiaryPhotoActivity">
+            android:name=".DiaryPhotoActivity">
         </activity>
         <activity
-            android:name=".Diary.DiarySelectKeywordActivity">
+            android:name=".DiarySelectKeywordActivity">
         </activity>
         <activity
-            android:name=".Diary.DiaryProcessActivity">
+            android:name=".DiaryProcessActivity">
         </activity>
         <activity
-            android:name=".Todo.TodoMainActivity">
+            android:name=".TodoMainActivity">
         </activity>
-        <activity
-            android:name=".CalendarMainActivity">
-        </activity>
+
         <receiver
-            android:name="com.hello.ourApplication.Todo.TodoAlarmReceiver"
+            android:name="com.hello.ourApplication.TodoAlarmReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

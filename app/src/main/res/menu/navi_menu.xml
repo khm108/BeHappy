@@ -24,7 +24,10 @@
         android:id="@+id/item_test"
         android:title="우울증 자가 진단" />
     <item
+        android:id="@+id/item_health_data"
+        android:title="건강 데이터 측정" />
+    <item
         android:id="@+id/item_pocket_garden"
-        android:title="Pocket Garden" />
+        android:title="Pocket Garden"/>
 
 </menu>

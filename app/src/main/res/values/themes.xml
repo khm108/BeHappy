@@ -10,10 +10,9 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor" tools:targetApi="21">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowSoftInputMode">adjustPan</item>
     </style>
     <style name="Theme.NavigationDrawer" parent="Theme.AppCompat.Light.DarkActionBar">
     </style>
@@ -25,31 +24,4 @@
         <item name="android:headerBackground">#627241</item>
         <item name="android:background">#FFFFFF</item>
     </style>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowAnimationStyle">@null</item>
-        <item name="android:windowContentOverlay">@null</item>
-    </style>
-
-    <style name="AppThemeTransparent" parent="AppTheme">
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:colorBackgroundCacheHint">@null</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:backgroundDimEnabled">false</item>
-    </style>
-
-    <style name="CalendarViewStyle" parent="@android:style/Widget.CalendarView">
-        <item name="android:focusedMonthDateColor">#8EBB6A</item>
-        <item name="android:unfocusedMonthDateColor">#8EBB6A</item>
-        <item name="android:datePickerMode">calendar</item>
-        <item name="android:selectedWeekBackgroundColor">#00FFFFFF</item>
-        <item name="android:weekNumberColor">#00FFFFFF</item>
-    </style>
-    <style name="ButtonStyle" parent="Widget.AppCompat.Button">
-        <item name="android:background">#93AA64</item>
-        <item name="android:textColor">#FFFFFF</item>
-    </style>
-
 </resources>
