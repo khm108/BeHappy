@@ -10,7 +10,7 @@ rootProject.name = "GradProjectUI5"
 include ':app'
 
 include ':unityLibrary'
-project(':unityLibrary').projectDir=new File('..\\UnityGame\\androidBuild\\unityLibrary')
+project(':unityLibrary').projectDir=new File('\\androidBuild\\unityLibrary')
 
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
